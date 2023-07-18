@@ -160,8 +160,6 @@ if P_b>0.04 and P_b<1.00:
 	st.latex(V_WO)
 	V_WO=latex(AF.V_WO_func(V_r=V_r, V_d=V_d, K_1A=K_1A).doit())
 	st.latex(V_WO)
-
-
 	
 if 	P_b>=1:
 	st.warning("shall be considered to be potentially very susceptible to aerodynamic excitation. Check if 2.2 is satisfied")
