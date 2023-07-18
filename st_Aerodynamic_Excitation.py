@@ -44,6 +44,9 @@ V_s=st.sidebar.number_input(' site hourly mean wind speed (10m above ground leve
 
 V_r=st.sidebar.number_input('hourly mean wind speed $V_r$=',  min_value=20.0, max_value=40., step=1., format="%.2f")
 
+V_d=st.sidebar.number_input('the maximum wind gust speed $V_d=$',min_value=V_r, value=50., step=1., format="%.2f")
+
+r=st.sidebar.number_input('polar radius $r=$', value=5.985, min_value=0.0, step=0.5, format="%.3f")
 
 sigma_flm=st.sidebar.number_input("peak stress in the structure per unit $\sigma_{flm}=$",value= 600., min_value=0.0, step=10., format="%.2f")
 
@@ -54,6 +57,8 @@ motions=["Vertical", "Torsional"]
 motion=st.sidebar.selectbox("motion", options=motions)
 
 delta_s=st.sidebar.number_input("logarithmic decrement of damping $\delta_s=$", value=0.5, min_value=0.0, step=0.01, format="%.3f")
+
+K_1A=st.sidebar.number_input("coefficient $K_{1A}=$",value=1.25, max_value=4.0, step=0.1, format="%.2f")
 
 
 
@@ -121,14 +126,44 @@ if P_b>0.04 and P_b<1.00:
 	
 	V_g=latex(AF.V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s))
 	st.latex(V_g)
-	#V_g_func(bridge_type,motion, V_Rg=V_Rg, C_g=C_g, f_B=f_B, f_T=f_T,b=b,b_0=b_0, d_4=d_4, m=m,delta_s=delta_s,rho=rho)
-	#V_g_func(bridge_type,motion, V_Rg=V_Rg, C_g=C_g, f_B=f_B, f_T=f_T,b=b,b_0=b_0, d_4=d_4, m=m,delta_s=delta_s,rho=rho)
-
-#
-
 	
+	st.write("2.1.3.3 Classical flutter")
+	V_f=latex(AF.V_f_func())
+	st.latex(V_f)
+	st.write("Where")
+	V_Rf=latex(AF.V_Rf_func())
+	st.latex(V_Rf)
+	V_Rf=latex(AF.V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b))
+	st.latex(V_Rf)
+	V_Rf=latex(AF.V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b).doit())
+	st.latex(V_Rf)
+	V_Rf_value=AF.V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b).doit().rhs
+	if V_Rf_value<2.5:
+		st.warning("$V_{Rf}$ not less than $2.5$")
+		V_Rf_value=2.5
+		V_f=latex(AF.V_f_func(V_Rf=V_Rf_value,f_T=f_T,b=b))
+		st.latex(V_f)
+		V_f=latex(AF.V_f_func(V_Rf=V_Rf_value,f_T=f_T,b=b).doit())
+		st.latex(V_f)
+		
+	else:
+		V_f=latex(AF.V_f_func(V_Rf=V_Rf_value,f_T=f_T,b=b))
+		st.latex(V_f)
+		V_f=latex(AF.V_f_func(V_Rf=V_Rf_value,f_T=f_T,b=b).doit())
+		st.latex(V_f)
+	
+	st.write('2.1.3.4 Limiting criteria')
+	
+	V_WO=latex(AF.V_WO_func())
+	st.latex(V_WO)
+	V_WO=latex(AF.V_WO_func(V_r=V_r, V_d=V_d, K_1A=K_1A))
+	st.latex(V_WO)
+	V_WO=latex(AF.V_WO_func(V_r=V_r, V_d=V_d, K_1A=K_1A).doit())
+	st.latex(V_WO)
+
+
 	
 if 	P_b>=1:
-	st.warning("check if 2.2 is satisfied")
+	st.warning("shall be considered to be potentially very susceptible to aerodynamic excitation. Check if 2.2 is satisfied")
 	
 

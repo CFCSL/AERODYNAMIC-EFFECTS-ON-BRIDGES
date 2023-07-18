@@ -289,12 +289,29 @@ def V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b):
    
     return Eq(V_Rf,val)
     
+##2.1.3.4 Limiting criteria
+
+# define the symbols
+V_WO= symbols('V_WO')
+V_d=symbols('V_d')
+K_1A=symbols('K_1A')
+
+def V_WO_func(V_r=V_r, V_d=V_d, K_1A=K_1A):
+    V_r=UnevaluatedExpr(V_r)
+    V_d=UnevaluatedExpr(V_d)
+    K_1A=UnevaluatedExpr(K_1A)
+    
+    val= (1.1/3)*(V_r+2*V_d)*K_1A
+    return Eq(V_WO,val,evaluate=False)
+
 
 
 
 def Geo_constraints():
 	text="Geometric constraints"
 	return(text)
+
+
 
 
 
