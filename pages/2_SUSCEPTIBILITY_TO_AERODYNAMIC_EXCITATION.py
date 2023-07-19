@@ -102,7 +102,7 @@ if P_b>0.04 and P_b<1.00:
 	if max(f_B,f_T)>5:
 		st.write("(a) Any bridge whose fundamental frequency is greater than $5Hz$ shall be considered stable with respect to vortex excitation.")
 	
-	V_vs=latex(AF.V_vs_func(V_r=V_r))
+	V_vs=latex(AF.V_vs_func())
 	st.latex(V_vs)
 	V_vs=latex(AF.V_vs_func(V_r=V_r).doit())
 	st.latex(V_vs)
