@@ -70,15 +70,35 @@ K_1A=st.sidebar.number_input("coefficient $K_{1A}=$",value=1.25, max_value=4.0, 
 st.header("2.1 Criteria for applicability and consideration of aerodynamic effects")
 
 st.write("The aerodynamic susceptibility parameter, $P_b$")
+# =============================================================================
+# 
+# P_b=latex(AF.P_func())
+# st.latex(P_b)
+# P_b=latex(AF.P_func(b=b,rho=rho, m=m, V_r=V_r,L=L,f_B=f_B))
+# st.latex(P_b)
+# P_b_val = round(AF.P_func(b=b, rho=rho, m=m, V_r=V_r, L=L, f_B=f_B).doit().rhs,2)
+# 
+# 
+# st.latex(Eq(P_b, P_b_val))
+# 
+# =============================================================================
 
-P_b=latex(AF.P_func())
-st.latex(P_b)
-P_b=latex(AF.P_func(b=b,rho=rho, m=m, V_r=V_r,L=L,f_B=f_B))
-st.latex(P_b)
-P_b_val = round(AF.P_func(b=b, rho=rho, m=m, V_r=V_r, L=L, f_B=f_B).doit().rhs,2)
+# Calculate P_b using P_func() from All_functions module and display in LaTeX format
+P_b1 = latex(AF.P_func())
+st.latex(P_b1)
+
+# Calculate P_b using P_func() with specific values and display in LaTeX format
+P_b2 = latex(AF.P_func(b=b, rho=rho, m=m, V_r=V_r, L=L, f_B=f_B))
+st.latex(P_b2)
+
+# Calculate P_b_value and display as an equation in LaTeX format
+P_b_val = round(AF.P_func(b=b, rho=rho, m=m, V_r=V_r, L=L, f_B=f_B).doit().rhs, 2)
+
+# Display the equation P_b = P_b_value
+st.latex(Eq(P_b2, P_b_val))
 
 
-st.latex(Eq(P_b, P_b_val))
+
 
 P_b=round(AF.P_func(b=b,rho=rho, m=m, V_r=V_r,L=L,f_B=f_B).doit().rhs,3)
 
