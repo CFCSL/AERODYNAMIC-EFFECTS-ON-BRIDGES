@@ -111,9 +111,9 @@ if P_b>0.04 and P_b<1.00:
 	V_vs=round(AF.V_vs_func(V_r=V_r).doit().rhs,3)
 
 	if V_cr>=V_vs:
-		st.write("**stable bridge**")
+		st.write("(b) Any bridge, including truss bridges (see also (c)), shall be considered stable with respect to vortex excited vibrations if the lowest critical wind speeds, $V_cr$, for vortex excitation in both bending and torsion, as defined in 2.1.1.2, exceed the value of reference wind speed $V_{vs}$")
 	else:
-		st.warning("unstable bridge")
+		st.warning("Unstable bridge")
 		
 		
 
