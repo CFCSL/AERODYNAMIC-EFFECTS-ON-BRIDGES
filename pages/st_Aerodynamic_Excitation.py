@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 from sympy import *
 init_printing()
-import All_functions as AF
+import Aerodynamic_Excitation as AF
 
 
 #Parameters in the sidebar
@@ -77,7 +77,7 @@ st.latex(P_b)
 P_b=round(AF.P_func(b=b,rho=rho, m=m, V_r=V_r,L=L,f_B=f_B).doit().rhs,3)
 
 if P_b<=0.04:
-	st.warning("no need to check the conditions, if the geometry of the bridge meets with the requirements indicated in section 2.3")
+	st.write("no need to check the conditions, if the geometry of the bridge meets with the requirements indicated in section 2.3")
 	st.write(AF.Geo_constraints())
 
 if P_b>0.04 and P_b<1.00:
