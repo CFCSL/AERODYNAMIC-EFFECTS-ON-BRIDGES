@@ -18,10 +18,16 @@ import Aerodynamic_Excitation as AF
 st.title("Aerodynamic")
 
 
+st.markdown("""
 
-st.write('This Standard specifies design requirements for bridges regarding aerodynamic effects, applicable to highway bridges and foot/cycle-track bridges meeting outlined constraints. Mandatory requirements are highlighted within boxes, while the document also includes advisory content for consideration. Overall, the Standard aims to enhance aerodynamic performance and safety of bridges, ensuring efficiency and reliability.')
+'This Standard specifies design requirements for bridges regarding aerodynamic effects, applicable to highway bridges and foot/cycle-track bridges meeting outlined constraints. Mandatory requirements are highlighted within boxes, while the document also includes advisory content for consideration. Overall, the Standard aims to enhance aerodynamic performance and safety of bridges, ensuring efficiency and reliability.
+
+""")
 
 
+
+st.image("figures/fig1a.jpeg")
+st.image("figures/fig1b.jpeg")
 
 
 
