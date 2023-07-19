@@ -75,7 +75,7 @@ st.latex(P_b)
 P_b=latex(AF.P_func(b=b,rho=rho, m=m, V_r=V_r,L=L,f_B=f_B))
 st.latex(P_b)
 P_b_value=round(AF.P_func(b=b,rho=rho, m=m, V_r=V_r,L=L,f_B=f_B).doit().rhs,2)
-st.latex(Eq(P_b,P_b_value))
+st.latex(P_b=P_b_value)
 P_b=round(AF.P_func(b=b,rho=rho, m=m, V_r=V_r,L=L,f_B=f_B).doit().rhs,3)
 
 if P_b<=0.04:
