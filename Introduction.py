@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import math
 import base64
 from io import BytesIO
-import All_functions as AF
+import Aerodynamic_Excitation as AF
 
 st.title("Aerodynamic")
 
