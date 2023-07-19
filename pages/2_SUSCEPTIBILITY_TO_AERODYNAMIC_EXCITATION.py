@@ -83,6 +83,7 @@ st.write("The aerodynamic susceptibility parameter, $P_b$")
 # 
 # =============================================================================
 
+
 # Calculate P_b using P_func() from All_functions module and display in LaTeX format
 P_b1 = latex(AF.P_func())
 st.latex(P_b1)
@@ -91,12 +92,9 @@ st.latex(P_b1)
 P_b2 = latex(AF.P_func(b=b, rho=rho, m=m, V_r=V_r, L=L, f_B=f_B))
 st.latex(P_b2)
 
-# Calculate P_b_value and display as an equation in LaTeX format
+# Calculate P_b_value and display it in LaTeX format
 P_b_val = round(AF.P_func(b=b, rho=rho, m=m, V_r=V_r, L=L, f_B=f_B).doit().rhs, 2)
-
-# Display the equation P_b = P_b_value
-st.latex(Eq(P_b2, P_b_val))
-
+st.latex(f"P_b = {P_b_val}")
 
 
 
