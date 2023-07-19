@@ -81,12 +81,8 @@ P_b2 = AF.P_func(b=b, rho=rho, m=m, V_r=V_r, L=L, f_B=f_B)
 st.latex(latex(P_b2))
 
 # Calculate P_b_value and display it as an equation
-P_b_val = round(P_b2.doit().rhs, 2)
+P_b_val = round(P_b2.doit().rhs, 3)
 st.latex(f"P_b = {P_b_val}")
-
-
-st.markdown(f'<div style="text-align: left">P_b = {P_b_val}</div>', unsafe_allow_html=True)
-
 
 
 
