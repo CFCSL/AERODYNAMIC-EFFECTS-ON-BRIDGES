@@ -104,6 +104,8 @@ if P_b>0.04 and P_b<1.00:
 	
 	V_vs=latex(AF.V_vs_func())
 	st.latex(V_vs)
+	V_vs=latex(AF.V_vs_func(V_r=V_r))
+	st.latex(V_vs)
 	V_vs=latex(AF.V_vs_func(V_r=V_r).doit())
 	st.latex(V_vs)
 	V_vs=round(AF.V_vs_func(V_r=V_r).doit().rhs,3)
