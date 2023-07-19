@@ -9,6 +9,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from sympy import *
+from sympy import latex, simplify, sympify
 init_printing()
 import Aerodynamic_Excitation as AF
 
