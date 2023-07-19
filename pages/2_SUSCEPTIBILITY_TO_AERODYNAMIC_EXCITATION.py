@@ -74,7 +74,7 @@ P_b=latex(AF.P_func())
 st.latex(P_b)
 P_b=latex(AF.P_func(b=b,rho=rho, m=m, V_r=V_r,L=L,f_B=f_B))
 st.latex(P_b)
-P_b=latex(round(AF.P_func(b=b,rho=rho, m=m, V_r=V_r,L=L,f_B=f_B).doit(),2))
+P_b=round(AF.P_func(b=b,rho=rho, m=m, V_r=V_r,L=L,f_B=f_B).doit().rhs,2)
 st.latex(P_b)
 P_b=round(AF.P_func(b=b,rho=rho, m=m, V_r=V_r,L=L,f_B=f_B).doit().rhs,3)
 
