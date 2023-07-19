@@ -30,7 +30,7 @@ m=st.sidebar.number_input('Mass per unit length of the bridge m=', value= 6306.,
 L=st.sidebar.number_input('Length of the relevant maximum spanvof the bridge L=', value= 96.673, min_value=0.0, step=0.1, format="%.3f")
 
 
-b_0=st.sidebar.number_input('Effective width of the bridge $b^*=$', min_value=b/2,max_value=b, step=0.2, format="%.2f")
+b_0=st.sidebar.number_input('Effective width of the bridge $b^*=$', value=b/2,min_value=0.0, max_value=b, step=0.2, format="%.2f")
 
 d_4=st.sidebar.number_input('Depth of the bridge $d_4$=', value= 3.8, min_value=0.0, step=0.01, format="%.3f")
 
