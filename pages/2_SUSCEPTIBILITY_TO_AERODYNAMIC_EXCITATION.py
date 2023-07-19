@@ -85,7 +85,7 @@ P_b_val = round(P_b2.doit().rhs, 2)
 st.latex(f"P_b = {P_b_val}", text_align="left")
 
 
-
+st.markdown(f'<div style="text-align: left">P_b = {P_b_val}</div>', unsafe_allow_html=True)
 
 
 
