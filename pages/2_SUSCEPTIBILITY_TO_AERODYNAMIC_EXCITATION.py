@@ -71,22 +71,18 @@ st.header("2.1 Criteria for applicability and consideration of aerodynamic effec
 
 st.write("The aerodynamic susceptibility parameter, $P_b$")
 
-# Calculate P_b using P_func() from All_functions module and display in LaTeX format
-P_b1 = latex(AF.P_func())
-st.latex(P_b1)
 
 # Calculate P_b using P_func() from All_functions module and display in LaTeX format
 P_b1 = AF.P_func()
-st.latex(latex(P_b1))
+st.latex(latex(P_b1), text_align="left")
 
 # Calculate P_b using P_func() with specific values and display in LaTeX format
 P_b2 = AF.P_func(b=b, rho=rho, m=m, V_r=V_r, L=L, f_B=f_B)
-st.latex(latex(P_b2))
+st.latex(latex(P_b2), text_align="left")
 
 # Calculate P_b_value and display it as an equation
 P_b_val = round(P_b2.doit().rhs, 2)
-st.latex(f"P_b = {P_b_val}")
-
+st.latex(f"P_b = {P_b_val}", text_align="left")
 
 P_b=round(AF.P_func(b=b,rho=rho, m=m, V_r=V_r,L=L,f_B=f_B).doit().rhs,3)
 
