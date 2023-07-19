@@ -83,7 +83,7 @@ if P_b<=0.04:
 	#st.write(AF.Geo_constraints())
 
 if P_b>0.04 and P_b<1.00:
-	st.write("(b) Bridges having $0.04 \leq P_b \leq 1.00$ shall be considered to be within the scope of these rules, provided the geometric constraints of $2.3$ are satisfied, and shall be considered adequate with regard to each potential type of excitation if they satisfy the relevant criteria given in 2.1.1, 2.1.2 and 2.1.3.")
+	st.write("(b) Bridges having $0.04 \leq P_b \leq 1.00$ shall be considered to be within the scope of these rules, provided the geometric constraints of 2.3 are satisfied, and shall be considered adequate with regard to each potential type of excitation if they satisfy the relevant criteria given in 2.1.1, 2.1.2 and 2.1.3.")
 	#st.write(AF.Geo_constraints())
 	st.write("**2.1.1 Limited amplitude response - vortex excitation**")
 	st.write("**2.1.1.2 Critical wind speeds for vortex excitation")
