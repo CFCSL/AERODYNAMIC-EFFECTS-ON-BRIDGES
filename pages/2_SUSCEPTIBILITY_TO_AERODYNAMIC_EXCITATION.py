@@ -106,7 +106,7 @@ if P_b>0.04 and P_b<1.00:
 	st.latex(V_cr)
 	
 	#V_cr=round(AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit().rhs,3)
-	V_cr=N(AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit(),3)
+	V_cr=N(AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit())
 	st.latex(V_cr)
 	V_cr=round(AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit().rhs,3)
 
