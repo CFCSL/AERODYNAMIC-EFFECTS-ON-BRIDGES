@@ -70,19 +70,6 @@ K_1A=st.sidebar.number_input("coefficient $K_{1A}=$",value=1.25, max_value=4.0, 
 st.header("2.1 Criteria for applicability and consideration of aerodynamic effects")
 
 st.write("The aerodynamic susceptibility parameter, $P_b$")
-# =============================================================================
-# 
-# P_b=latex(AF.P_func())
-# st.latex(P_b)
-# P_b=latex(AF.P_func(b=b,rho=rho, m=m, V_r=V_r,L=L,f_B=f_B))
-# st.latex(P_b)
-# P_b_val = round(AF.P_func(b=b, rho=rho, m=m, V_r=V_r, L=L, f_B=f_B).doit().rhs,2)
-# 
-# 
-# st.latex(Eq(P_b, P_b_val))
-# 
-# =============================================================================
-
 
 # Calculate P_b using P_func() from All_functions module and display in LaTeX format
 P_b1 = latex(AF.P_func())
@@ -94,7 +81,10 @@ st.latex(P_b2)
 
 # Calculate P_b_value and display it in LaTeX format
 P_b_val = round(AF.P_func(b=b, rho=rho, m=m, V_r=V_r, L=L, f_B=f_B).doit().rhs, 2)
-st.latex(f"P_b = {P_b_val}")
+#st.latex(f"P_b = {P_b_val}")
+col1, col2 = st.beta_columns(2)
+col1.latex(f"P_b =")
+col2.latex(f"{P_b_val}")
 
 
 
