@@ -81,7 +81,7 @@ P_b2 = AF.P_func(b=b, rho=rho, m=m, V_r=V_r, L=L, f_B=f_B)
 st.latex(latex(P_b2))
 
 # Calculate P_b_value and display it as an equation
-P_b = N(P_b2.doit())
+P_b = N(P_b2.doit(),3)
 st.latex(latex(P_b))
 
 
