@@ -110,8 +110,8 @@ if P_b>0.04 and P_b<1.00:
 		
 
 	st.write("2.1.2 Limited amplitude response - turbulence	")
-	if f<0: 
-		st.warning("the dynamic magnification effects of turbulence may be ignored")
+	if f>1: 
+		st.write("Provided the fundamental frequencies in both bending and torsion calculated in accordance with 2.1.1.2 are greater than 1Hz, the dynamic magnification effects of turbulence may be ignored.")
 	else: 
 
 		P_T=latex(AF.P_T_func())
@@ -120,6 +120,9 @@ if P_b>0.04 and P_b<1.00:
 		st.latex(P_T)
 		P_T=latex(AF.P_T_func(b=b,rho=rho, m=m, V_s=V_s,f_B=f_B, sigma_flm=sigma_flm, sigma_c=sigma_c).doit())
 		st.latex(P_T)
+		P_T_value=AF.P_T_func(b=b,rho=rho, m=m, V_s=V_s,f_B=f_B, sigma_flm=sigma_flm, sigma_c=sigma_c).doit().rhs
+		if P_T_value<=1.0:
+			st.write("The dynamic magnification effects of turbulence may also be neglected for $P_T \leq 1.0$")
 		
 	st.write("2.1.3 Divergent amplitude response")
 	st.write("2.1.3.2 Galloping and stall flutter")
