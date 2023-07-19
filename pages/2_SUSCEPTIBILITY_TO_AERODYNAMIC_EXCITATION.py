@@ -79,11 +79,11 @@ st.latex(P_b)
 P_b=round(AF.P_func(b=b,rho=rho, m=m, V_r=V_r,L=L,f_B=f_B).doit().rhs,3)
 
 if P_b<=0.04:
-	st.write("(a) Bridges designed to carry the loadings specified in BD 37 (DMRB 1.3), built of normal construction, are considered to be subject to insignificant effects in respect of all forms of aerodynamic excitation when $P_b < 0.04.$ However the Rules can still be applied if required, provided the constraints of $2.3$ are satisfied.")
+	st.write("(a) Bridges designed to carry the loadings specified in BD 37 (DMRB 1.3), built of normal construction, are considered to be subject to insignificant effects in respect of all forms of aerodynamic excitation when $P_b < 0.04.$ However the Rules can still be applied if required, provided the constraints of 2.3 are satisfied.")
 	#st.write(AF.Geo_constraints())
 
 if P_b>0.04 and P_b<1.00:
-	st.write("(b) Bridges having $0.04 \leq P_b \leq 1.00$ shall be considered to be within the scope of these rules, provided the geometric constraints of $2.3$ are satisfied, and shall be considered adequate with regard to each potential type of excitation if they satisfy the relevant criteria given in $2.1.1$, $2.1.2$ and $2.1.3.$")
+	st.write("(b) Bridges having $0.04 \leq P_b \leq 1.00$ shall be considered to be within the scope of these rules, provided the geometric constraints of $2.3$ are satisfied, and shall be considered adequate with regard to each potential type of excitation if they satisfy the relevant criteria given in 2.1.1, 2.1.2 and 2.1.3.")
 	#st.write(AF.Geo_constraints())
 	st.write("**2.1.1 Limited amplitude response - vortex excitation**")
 	st.write("**2.1.1.2 Critical wind speeds for vortex excitation")
@@ -164,6 +164,6 @@ if P_b>0.04 and P_b<1.00:
 	st.latex(V_WO)
 	
 if 	P_b>=1:
-	st.write("(c) Bridges with $P_b > 1.00$ shall be considered to be potentially very susceptible to aerodynamic excitation: see $2.2.$")
+	st.write("(c) Bridges with $P_b > 1.00$ shall be considered to be potentially very susceptible to aerodynamic excitation: see 2.2.")
 	
 
