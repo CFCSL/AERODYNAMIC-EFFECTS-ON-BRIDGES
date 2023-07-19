@@ -64,9 +64,11 @@ K_1A=st.sidebar.number_input("coefficient $K_{1A}=$",value=1.25, max_value=4.0, 
 
 
 
-# Show the calculation
+# Show the calculations
 	
 st.header("2.1 Criteria for applicability and consideration of aerodynamic effects")
+
+st.write("The aerodynamic susceptibility parameter, $P_b$")
 
 P_b=latex(AF.P_func())
 st.latex(P_b)
@@ -77,7 +79,7 @@ st.latex(P_b)
 P_b=round(AF.P_func(b=b,rho=rho, m=m, V_r=V_r,L=L,f_B=f_B).doit().rhs,3)
 
 if P_b<=0.04:
-	st.write("no need to check the conditions, if the geometry of the bridge meets with the requirements indicated in section 2.3")
+	st.write("(a) Bridges designed to carry the loadings specified in BD 37 (DMRB 1.3), built of normal construction, are considered to be subject to insignificant effects in respect of all forms of aerodynamic excitation when Pb < 0.04. However the Rules can still be applied if required, provided the constraints of 2.3 are satisfied.")
 	st.write(AF.Geo_constraints())
 
 if P_b>0.04 and P_b<1.00:
