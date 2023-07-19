@@ -82,9 +82,16 @@ st.latex(P_b2)
 # Calculate P_b_value and display it in LaTeX format
 P_b_val = round(AF.P_func(b=b, rho=rho, m=m, V_r=V_r, L=L, f_B=f_B).doit().rhs, 2)
 #st.latex(f"P_b = {P_b_val}")
-col1, col2 = st.beta_columns(2)
-col1.latex(f"P_b =")
-col2.latex(f"{P_b_val}")
+# Use HTML/CSS to align elements horizontally
+st.markdown(
+    f"""
+    <div style="display: flex; justify-content: space-between;">
+        <div>P_b = </div>
+        <div>{P_b_val}</div>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 
 
