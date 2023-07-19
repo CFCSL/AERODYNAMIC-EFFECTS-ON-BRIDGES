@@ -79,6 +79,8 @@ def V_cr_func(bridge_type, b_0=b_0, d_4=d_4, f=f):
 # define the symbols 
 V_vs= symbols('V_vs')
 def V_vs_func(V_r=V_r):
+    V_r=UnevaluatedExpr(V_r)
+    #V_vs=UnevaluatedExpr(V_vs)
     val=1.25*V_r
     return Eq(V_vs, val, evaluate=False)
 
@@ -126,46 +128,6 @@ from sympy import Piecewise, Eq, symbols, Min
 
 V_g, V_Rg, f_B, f_T, b, d_4 , delta_s,rho,b_0 = symbols('V_g V_Rg f_B f_T b d_4 delta_s rho b_0')
 
-
-# =============================================================================
-# 
-# def V_g_func(bridge_type,motion, f_B=f_B, f_T=f_T,b=b,b_0=b_0,m=m, d_4=d_4,rho=rho, delta_s=delta_s):
-#     
-# 
-#     f_B=UnevaluatedExpr(f_B)
-#     f_T=UnevaluatedExpr(f_T)
-#     b=UnevaluatedExpr(b)
-#     b_0=UnevaluatedExpr(b_0)
-#     d_4=UnevaluatedExpr(d_4)
-#     rho=UnevaluatedExpr(rho)	
-#     delta_s=UnevaluatedExpr(delta_s)	
-# 
-#     if bridge_type in ["1","1A","2","5","6"]:
-#         if motion=="Torsional":
-#             val=3.3*f_T
-#         if motion=="Vertical":
-#             val=float("nan")
-#     if bridge_type in ["3","3A","4","4A"]:
-#         if motion=="Vertical":
-#             overhang = (b - b_0) / 2
-#             C_g=Piecewise((2.0, (bridge_type in ["3", "4"]) & (overhang >= 0.7 * d_4)),
-#                            (1.0, (overhang < 0.7 * d_4)),
-#                            (float('nan'), True))
-#             
-#             V_Rg=C_g*(m*delta_s)/rho*d_4**2
-#             val=V_Rg * f_B * d_4
-#         if motion=="Torsional":
-#             val3=Min(5.5*f_T*b, 12*f_T*d_4)
-#             val4=5.5*f_T*b
-#             
-#             cond3=(b<4*d_4)
-#             cond4=(b>=4*d_4)
-#             
-#             val=Piecewise((val3,cond3), (val4, cond4))
-#     
-#     return Eq(V_g, val, evaluate=False)
-# 
-# =============================================================================
 
 
 
