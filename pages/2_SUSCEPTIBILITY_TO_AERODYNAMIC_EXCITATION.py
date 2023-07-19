@@ -74,15 +74,35 @@ st.write("The aerodynamic susceptibility parameter, $P_b$")
 
 # Calculate P_b using P_func() from All_functions module and display in LaTeX format
 P_b1 = AF.P_func()
-st.latex(latex(P_b1), text_align="left")
+st.latex(latex(P_b1))
 
 # Calculate P_b using P_func() with specific values and display in LaTeX format
 P_b2 = AF.P_func(b=b, rho=rho, m=m, V_r=V_r, L=L, f_B=f_B)
-st.latex(latex(P_b2), text_align="left")
+st.latex(latex(P_b2))
 
 # Calculate P_b_value and display it as an equation
 P_b_val = round(P_b2.doit().rhs, 2)
-st.latex(f"P_b = {P_b_val}", text_align="left")
+st.latex(f"P_b = {P_b_val}")
+
+
+
+# Calculate P_b using P_func() from All_functions module and display in LaTeX format
+P_b1 = AF.P_func()
+st.markdown(f'<div style="text-align: left">{latex(P_b1)}</div>', unsafe_allow_html=True)
+
+# Calculate P_b using P_func() with specific values and display in LaTeX format
+P_b2 = AF.P_func(b=b, rho=rho, m=m, V_r=V_r, L=L, f_B=f_B)
+st.markdown(f'<div style="text-align: left">{latex(P_b2)}</div>', unsafe_allow_html=True)
+
+# Calculate P_b_value and display it as an equation
+P_b_val = round(P_b2.doit().rhs, 2)
+st.markdown(f'<div style="text-align: left">P_b = {P_b_val}</div>', unsafe_allow_html=True)
+
+
+
+
+
+
 
 P_b=round(AF.P_func(b=b,rho=rho, m=m, V_r=V_r,L=L,f_B=f_B).doit().rhs,3)
 
