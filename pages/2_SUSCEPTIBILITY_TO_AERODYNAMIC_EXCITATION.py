@@ -78,7 +78,7 @@ st.latex(P_b)
 P_b_val = round(AF.P_func(b=b, rho=rho, m=m, V_r=V_r, L=L, f_B=f_B).doit().rhs,2)
 
 
-st.write(P_b_val)
+st.write("$P_b=$", P_b_val)
 
 P_b=round(AF.P_func(b=b,rho=rho, m=m, V_r=V_r,L=L,f_B=f_B).doit().rhs,3)
 
