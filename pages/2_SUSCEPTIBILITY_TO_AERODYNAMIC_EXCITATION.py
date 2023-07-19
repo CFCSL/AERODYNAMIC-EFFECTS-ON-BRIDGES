@@ -85,7 +85,7 @@ if P_b<=0.04:
 if P_b>0.04 and P_b<1.00:
 	st.write("(b) Bridges having $0.04 \leq P_b \leq 1.00$ shall be considered to be within the scope of these rules, provided the geometric constraints of 2.3 are satisfied, and shall be considered adequate with regard to each potential type of excitation if they satisfy the relevant criteria given in 2.1.1, 2.1.2 and 2.1.3.")
 	#st.write(AF.Geo_constraints())
-	st.subheader("2.1.1 Limited amplitude response - vortex excitation**")
+	st.subheader("2.1.1 Limited amplitude response - vortex excitation")
 	st.write("2.1.1.2 Critical wind speeds for vortex excitation")
 	
 
@@ -152,7 +152,7 @@ if P_b>0.04 and P_b<1.00:
 	st.latex(V_Rf)
 	V_Rf_value=AF.V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b).doit().rhs
 	if V_Rf_value<2.5:
-		st.warning("$V_{Rf}$ not less than $2.5$")
+		st.write("$V_{Rf}$ is not less than $2.5$ if $V_{Rf} \leq 2.5$ then the value equal $2.5$ is taken")
 		V_Rf_value=2.5
 		V_f=latex(AF.V_f_func(V_Rf=V_Rf_value,f_T=f_T,b=b))
 		st.latex(V_f)
