@@ -97,7 +97,7 @@ if P_b>0.04 and P_b<1.00:
 	st.latex(V_cr)
 	V_cr=round(AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit().rhs,3)
 
-	st.write("**2.1.1.3 Limiting criteria**")
+	st.write("2.1.1.3 Limiting criteria")
 	V_vs=latex(AF.V_vs_func(V_r=V_r).doit())
 	st.latex(V_vs)
 	V_vs=round(AF.V_vs_func(V_r=V_r).doit().rhs,3)
