@@ -85,8 +85,8 @@ if P_b<=0.04:
 if P_b>0.04 and P_b<1.00:
 	st.write("(b) Bridges having $0.04 \leq P_b \leq 1.00$ shall be considered to be within the scope of these rules, provided the geometric constraints of 2.3 are satisfied, and shall be considered adequate with regard to each potential type of excitation if they satisfy the relevant criteria given in 2.1.1, 2.1.2 and 2.1.3.")
 	#st.write(AF.Geo_constraints())
-	st.write("**2.1.1 Limited amplitude response - vortex excitation**")
-	st.write("**2.1.1.2 Critical wind speeds for vortex excitation")
+	st.subheader("2.1.1 Limited amplitude response - vortex excitation**")
+	st.write("2.1.1.2 Critical wind speeds for vortex excitation")
 	
 
 	V_cr=latex(AF.V_cr_func(bridge_type=bridge_type))
@@ -117,7 +117,7 @@ if P_b>0.04 and P_b<1.00:
 		
 		
 
-	st.write("2.1.2 Limited amplitude response - turbulence	")
+	st.subheader("2.1.2 Limited amplitude response - turbulence	")
 	if f>1: 
 		st.write("Provided the fundamental frequencies in both bending and torsion calculated in accordance with 2.1.1.2 are greater than 1Hz, the dynamic magnification effects of turbulence may be ignored.")
 	else: 
@@ -132,7 +132,7 @@ if P_b>0.04 and P_b<1.00:
 		if P_T_value<=1.0:
 			st.write("The dynamic magnification effects of turbulence may also be neglected for $P_T \leq 1.0$")
 		
-	st.write("2.1.3 Divergent amplitude response")
+	st.subheader("2.1.3 Divergent amplitude response")
 	st.write("2.1.3.2 Galloping and stall flutter")
 	V_g_0=latex(AF.V_g_func_0(bridge_type,motion))
 	st.latex(V_g_0)
