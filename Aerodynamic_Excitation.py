@@ -291,17 +291,7 @@ def V_WO_func(V_r=V_r, V_d=V_d, K_1A=K_1A):
 
 
 
-def Geo_constraints():
-	st.Markdown(f"""
-		 For applicability of the reduced velocities for divergent amplitude response (2.1.3.2) and the vortex shedding maximum amplitude derivation (3.1), the following constraints shall be satisfied:
-		 (i) Solid edge members, such as fascia beams and solid parapets shall have a total depth less than 0.2d4 unless positioned closer than 0.5d4 from the outer girder when they shall not protrude above the deck by more than 0.2d4 nor below the deck by more than 0.5d4. In defining such edge members, edge stiffening of the slab to a depth of 0.5 times the slab thickness may be ignored.
-		 (ii) Other edge members such as parapets, barriers, etc., shall have a height above deck level, h, and a solidity ratio, φ, such that φ is less than 0.5 and the product hφ is less than 0.35d4 for the effective edge member. The value of φ may exceed 0.5 over short lengths of parapet, provided that the total length projected onto the bridge centre-line of both the upwind and downwind portions of parapet whose solidity ratio exceeds 0.5 does not exceed 30% of the bridge span."
-		 (iii) Any central median barrier shall have a shadow area in elevation per metre length less than 0.5m2. Kerbs or upstands greater than 100mm deep shall be considered as part of this constraint by treating as a solid bluff depth; where less than 100mm the depth shall be neglected, see Figure 2."
-				
-	
-	
-	
-				""")
+
 
 
 
