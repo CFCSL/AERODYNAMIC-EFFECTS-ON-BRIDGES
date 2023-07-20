@@ -149,6 +149,8 @@ if P_b>0.04 and P_b<1.00:
 	st.write("2.1.3.2 Galloping and stall flutter")
 	V_g_0=latex(AF.V_g_func_0(bridge_type,motion))
 	st.latex(V_g_0)
+	V_g_0=latex(AF.V_g_func_0(bridge_type,motion,V_Rg=V_Rg, f_B=f_B, f_T=f_T,b=b, d_4=d_4))
+	st.latex(V_g_0)
 	
 	#V_g=latex(AF.V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s))
 	#st.latex(V_g)
