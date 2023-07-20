@@ -22,6 +22,8 @@ bridge_types = ["1", "1A", "2", "3", "3A", "4", "4A", "5", "6"]
 
 bridge_type=st.sidebar.selectbox("bridge_type", options=bridge_types)
 
+motions=["Vertical", "Torsional"]
+
 rho=st.sidebar.number_input('Density of  air rho=', value= 1.226, min_value=0.0, step=0.01, format="%.3f")
 
 b=st.sidebar.number_input("Overall width of the bridge deck $b=$",value= 12.6, min_value=0.0, step=0.2, format="%.2f")
@@ -53,7 +55,7 @@ sigma_flm=st.sidebar.number_input("peak stress in the structure per unit $\sigma
 
 sigma_c=st.sidebar.number_input(" reference stress $\sigma_{c}=$",value= 80., min_value=0.0, step=2., format="%.2f")
 
-motions=["Vertical", "Torsional"]
+
 
 motion=st.sidebar.selectbox("motion", options=motions)
 
