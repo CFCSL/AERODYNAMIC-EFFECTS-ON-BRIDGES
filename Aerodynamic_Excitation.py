@@ -225,8 +225,8 @@ def V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, 
             C_g = Piecewise((val1, cond1), (val2, cond2), (float('nan'), True))
             
             if C_g is not None:
-                V_Rg = round_expr(C_g * (m * delta_s) / rho * d_4**2,2)
-                val = round_expr(V_Rg * f_B * d_4,2)
+                V_Rg = C_g * (m * delta_s) / rho * d_4**2
+                val = V_Rg * f_B * d_4
             else:
                 val = float('nan')
         else:
@@ -238,7 +238,7 @@ def V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, 
             
             val = Piecewise((val3, cond3), (val4, cond4))
 
-    return Eq(V_g, round_expr(val,3), evaluate=False)
+    return Eq(V_g, val, evaluate=False)
 
 
 #%%
