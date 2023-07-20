@@ -19,6 +19,12 @@ import numpy as np
 def round_expr(expr, num_digits):
     return expr.xreplace({n : round(n, num_digits) for n in expr.atoms(Number)})
 
+def round_equation(eq, num_digits):
+    lhs = eq.lhs
+    rhs = eq.rhs
+    rounded_rhs = round_expr(rhs, num_digits)
+    return Eq(lhs, rounded_rhs)
+
 
 #%%
 ## 2.1 Criteria for applicability and consideration of aerodynamic effects
@@ -114,7 +120,7 @@ def P_T_func(b=b,rho=rho, m=m, V_s=V_s,f_B=f_B, sigma_flm=sigma_flm, sigma_c=sig
     sigma_c=UnevaluatedExpr(sigma_c)    
     
 
-    return Eq(P_T,round_expr(Mul( Mul(((rho * b**2) / m) , (V_s / (N(f_B,2)*b))**2, evaluate=False),((sigma_flm*b)/sigma_c),evaluate=False),3))
+    return round_equation(Eq(P_T,Mul( Mul(((rho * b**2) / m) , (V_s / (N(f_B,2)*b))**2, evaluate=False),((sigma_flm*b)/sigma_c),evaluate=False)),3)
 
 
 
