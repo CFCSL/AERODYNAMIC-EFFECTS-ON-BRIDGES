@@ -263,7 +263,7 @@ def V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b):
     a2=Pow(a1,(1/2), evaluate=False)
     val=round_expr(1.8*a2*((m*r)/(rho*b**3))**(1/2),2)
    
-    return Eq(V_Rf,val)
+    return round_equation(Eq(V_Rf,val),2)
     
 ##2.1.3.4 Limiting criteria
 
