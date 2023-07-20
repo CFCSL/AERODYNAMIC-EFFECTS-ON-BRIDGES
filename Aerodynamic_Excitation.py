@@ -198,6 +198,14 @@ def V_g_func_0(bridge_type,motion, V_Rg=V_Rg, f_B=f_B, f_T=f_T,b=b, d_4=d_4):
 
 #%%
 def V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s):
+    b=UnevaluatedExpr(b)
+    b_0=UnevaluatedExpr(b_0)
+    m=UnevaluatedExpr(m)
+    rho=UnevaluatedExpr(rho)
+    d_4=UnevaluatedExpr(d_4)
+    f_B=UnevaluatedExpr(f_B)
+    f_T=UnevaluatedExpr(f_T)
+    delta_s=UnevaluatedExpr(delta_s)
 
     b = float(b)
     b_0 = float(b_0)
