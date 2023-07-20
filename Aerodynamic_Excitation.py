@@ -60,10 +60,10 @@ def V_cr_func(bridge_type, b_0=b_0, d_4=d_4, f=f):
 #     f=UnevaluatedExpr(f)
 #     
 # =============================================================================
-    r = N(b_0 / d_4,4)
+    r = N(b_0 / d_4,3)
     r=UnevaluatedExpr(r)
     val = Piecewise(
-        (N(6.5 * f * d_4,5), (r <= 5) & (bridge_type in bridge_types)),
+        (N(6.5 * f * d_4,4), (r <= 5) & (bridge_type in bridge_types)),
         (N(f * d_4 * (1.1 * b_0 / d_4 + 1),4), (r > 5) & (r < 10) & (bridge_type in ["1", "1A", "3", "3A", "4", "4A"])),
         (N(f * d_4 * (0.7 * b_0 / d_4 + 3),4), (r > 5) & (r < 10) & (bridge_type in ["2", "5", "6"])),
         (N(12 * f * d_4,4), (r >= 10) & (bridge_type in ["1", "1A", "3", "3A", "4", "4A"])),
