@@ -178,16 +178,16 @@ def V_g_func_0(bridge_type,motion, V_Rg=V_Rg, f_B=f_B, f_T=f_T,b=b, d_4=d_4):
     d_4=UnevaluatedExpr(d_4)
     if bridge_type in ["1","1A","2","5","6"]:
         if motion=="Torsional":
-            val=round_expr(3.3*f_T,2)
+            val=3.3*f_T
         if motion=="Vertical":
             val=float("nan")
     else:
         if motion=="Vertical":
             
-            val=round_expr(V_Rg * f_B * d_4,2)
+            val=V_Rg * f_B * d_4
         else:
-            val3=round_expr(Min(5.5*f_T*b, 12*f_T*d_4),2)
-            val4=round_expr(5.5*f_T*b,2)
+            val3=Min(5.5*f_T*b, 12*f_T*d_4)
+            val4=5.5*f_T*b
             
             cond3=(b<4*d_4)
             cond4=(b>=4*d_4)
@@ -263,7 +263,7 @@ def V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b):
     a2=Pow(a1,(1/2), evaluate=False)
     val=round_expr(1.8*a2*((m*r)/(rho*b**3))**(1/2),2)
    
-    return round_equation(Eq(V_Rf,val),2)
+    return Eq(V_Rf,val)
     
 ##2.1.3.4 Limiting criteria
 
