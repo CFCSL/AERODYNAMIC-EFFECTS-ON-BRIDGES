@@ -106,7 +106,7 @@ def P_T_func(b=b,rho=rho, m=m, V_s=V_s,f_B=f_B, sigma_flm=sigma_flm, sigma_c=sig
     sigma_c=UnevaluatedExpr(sigma_c)    
     
 
-    return Eq(P_T,Mul( Mul(((rho * b**2) / m) , (V_s / (N(f_B,2)*b))**2, evaluate=False),((sigma_flm*b)/sigma_c),evaluate=False))
+    return Eq(P_T,N(Mul( Mul(((rho * b**2) / m) , (V_s / (N(f_B,2)*b))**2, evaluate=False),((sigma_flm*b)/sigma_c),4),evaluate=False))
 
 
 
