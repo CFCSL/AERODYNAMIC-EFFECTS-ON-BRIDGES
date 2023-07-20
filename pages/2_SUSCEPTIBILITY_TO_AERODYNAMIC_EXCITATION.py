@@ -86,7 +86,6 @@ st.latex(latex(P_b))
 
 
 
-
 P_b=round(AF.P_func(b=b,rho=rho, m=m, V_r=V_r,L=L,f_B=f_B).doit().rhs,3)
 
 if P_b<=0.04:
@@ -151,8 +150,8 @@ if P_b>0.04 and P_b<1.00:
 	st.latex(V_g_0)
 
 	
-	V_g=latex(AF.V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s))
-	st.latex(V_g)
+	#V_g=latex(AF.V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s))
+	#st.latex(V_g)
 	
 	st.write("2.1.3.3 Classical flutter")
 	V_f=latex(AF.V_f_func())
