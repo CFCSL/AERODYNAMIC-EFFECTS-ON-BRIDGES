@@ -194,7 +194,7 @@ def V_g_func_0(bridge_type,motion, V_Rg=V_Rg, f_B=f_B, f_T=f_T,b=b, d_4=d_4):
             
             val=Piecewise((val3,cond3), (val4, cond4))
     
-    return val
+    return Eq(V_g,val, evaluate=False)
 
 #%%
 def V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s):
