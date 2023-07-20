@@ -161,8 +161,8 @@ if P_b>0.04 and P_b<1.00:
 	st.latex(V_Rf)
 	V_Rf=latex(AF.V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b))
 	st.latex(V_Rf)
-	V_Rf=latex(AF.V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b).doit())
-	st.latex(V_Rf)
+	V_Rf=AF.round_equation((AF.V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b).doit()),2)
+	st.latex(latex(V_Rf))
 	V_Rf_value=AF.V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b).doit().rhs
 	if V_Rf_value<2.5:
 		st.write("$V_{Rf}$ is not less than $2.5$. If $V_{Rf} \leq 2.5$ then the value  $2.5$ is taken")
