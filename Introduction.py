@@ -15,7 +15,7 @@ import base64
 from io import BytesIO
 import Aerodynamic_Excitation as AF
 
-st.title("Aerodynamic")
+st.title(" DESIGN RULES FOR AERODYNAMIC EFFECTS ON BRIDGES")
 
 
 st.markdown("""
