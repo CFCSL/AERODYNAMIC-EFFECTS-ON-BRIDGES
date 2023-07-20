@@ -12,6 +12,14 @@ init_printing()
 from sympy import Piecewise, nan
 import numpy as np
 
+
+
+
+
+def round_expr(expr, num_digits):
+    return expr.xreplace({n : round(n, num_digits) for n in expr.atoms(Number)})
+
+
 #%%
 ## 2.1 Criteria for applicability and consideration of aerodynamic effects
 # Define the symbols
@@ -136,9 +144,9 @@ def V_Rg_func(C_g=C_g, m=m, delta_s=delta_s, rho=rho, d_4=d_4):
     delta_s = UnevaluatedExpr(delta_s)
     rho=UnevaluatedExpr(rho)
     d_4 = UnevaluatedExpr(d_4)
-    result = C_g*(m*delta_s)/rho*d_4**2
+    result = N(C_g*(m*delta_s)/rho*d_4**2,7)
 
-    return result#Eq(V_Rg, result, evaluate=False)
+    return result
 
 
 
@@ -216,7 +224,7 @@ def V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, 
             
             val = Piecewise((val3, cond3), (val4, cond4))
 
-    return Eq(V_g, val, evaluate=False)
+    return Eq(V_g, round_expr(val,3), evaluate=False)
 
 
 #%%
