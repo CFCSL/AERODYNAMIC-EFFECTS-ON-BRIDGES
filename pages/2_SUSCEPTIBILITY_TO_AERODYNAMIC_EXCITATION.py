@@ -66,7 +66,6 @@ K_1A=st.sidebar.number_input("coefficient $K_{1A}=$",value=1.25, max_value=4.0, 
 
 
 
-
 # Show the calculations
 	
 st.header("2.1 Criteria for applicability and consideration of aerodynamic effects")
