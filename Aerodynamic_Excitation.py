@@ -178,23 +178,23 @@ def V_g_func_0(bridge_type,motion, V_Rg=V_Rg, f_B=f_B, f_T=f_T,b=b, d_4=d_4):
     d_4=UnevaluatedExpr(d_4)
     if bridge_type in ["1","1A","2","5","6"]:
         if motion=="Torsional":
-            val=3.3*f_T
+            val=round_expr(3.3*f_T,2)
         if motion=="Vertical":
             val=float("nan")
     else:
         if motion=="Vertical":
             
-            val=V_Rg * f_B * d_4
+            val=round_expr(V_Rg * f_B * d_4,2)
         else:
-            val3=Min(5.5*f_T*b, 12*f_T*d_4)
-            val4=5.5*f_T*b
+            val3=round_expr(Min(5.5*f_T*b, 12*f_T*d_4),2)
+            val4=round_expr(5.5*f_T*b,2)
             
             cond3=(b<4*d_4)
             cond4=(b>=4*d_4)
             
             val=Piecewise((val3,cond3), (val4, cond4))
     
-    return val#Eq(V_g, val, evaluate=False)
+    return val
 
 #%%
 def V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s):
@@ -204,12 +204,12 @@ def V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, 
 
     if bridge_type in ["1", "1A", "2", "5", "6"]:
         if motion == "Torsional":
-            val = 3.3 * f_T
+            val = round_expr(3.3 * f_T,2)
         if motion == "Vertical":
             val = float("nan")
     else:
         if motion == "Vertical":
-            overhang = (b - b_0) / 2
+            overhang = round_expr((b - b_0) / 2,2)
             val1 = 2.0
             val2 = 1.0
             cond1 = (bridge_type in ["3", "4"]) & (overhang >= 0.7 * d_4)
@@ -217,13 +217,13 @@ def V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, 
             C_g = Piecewise((val1, cond1), (val2, cond2), (float('nan'), True))
             
             if C_g is not None:
-                V_Rg = C_g * (m * delta_s) / rho * d_4**2
-                val = V_Rg * f_B * d_4
+                V_Rg = round_expr(C_g * (m * delta_s) / rho * d_4**2,2)
+                val = round_expr(V_Rg * f_B * d_4,2)
             else:
                 val = float('nan')
         else:
-            val3 = Min(5.5 * f_T * b, 12 * f_T * d_4)
-            val4 = 5.5 * f_T * b
+            val3 =round_expr( Min(5.5 * f_T * b, 12 * f_T * d_4),2)
+            val4 = round_expr(5.5 * f_T * b,2)
             
             cond3 = (b < 4 * d_4)
             cond4 = (b >= 4 * d_4)
@@ -246,7 +246,7 @@ r=symbols('r')
 
 def V_f_func(V_Rf=V_Rf,f_T=f_T,b=b):
     V_Rf=UnevaluatedExpr(V_Rf)
-    val=V_Rf*f_T*b
+    val=round_expr(V_Rf*f_T*b,2)
     return Eq(V_f,val)
 
 
@@ -261,7 +261,7 @@ def V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b):
     
     a1=(1-1.1*(f_B/f_T)**2)#**(1/2)
     a2=Pow(a1,(1/2), evaluate=False)
-    val=1.8*a2*((m*r)/(rho*b**3))**(1/2)
+    val=round_expr(1.8*a2*((m*r)/(rho*b**3))**(1/2),2)
    
     return Eq(V_Rf,val)
     
@@ -277,7 +277,7 @@ def V_WO_func(V_r=V_r, V_d=V_d, K_1A=K_1A):
     V_d=UnevaluatedExpr(V_d)
     K_1A=UnevaluatedExpr(K_1A)
     
-    val= (1.1/3)*(V_r+2*V_d)*K_1A
+    val= round_expr((1.1/3)*(V_r+2*V_d)*K_1A,2)
     return Eq(V_WO,val,evaluate=False)
 
 
