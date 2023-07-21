@@ -295,7 +295,7 @@ def V_WO_func(V_r=V_r, V_d=V_d, K_1A=K_1A):
 c = symbols("c")
 r = symbols("r")
 y_max = symbols("y_max")
-k, h, phi = symbols('k h phi')
+k, h, phi, d_4 = symbols('k h phi d_4')
 
 def c_func(k=k, h=h, phi=phi, d_4=d_4):
     return 3 * (k + h * phi) / d_4
@@ -308,7 +308,9 @@ def y_max_func(bridge_type, motion, c=c, b=b, d_4=d_4, rho=rho, m=m, delta_s=del
     val2 = (c * b**1.5 * d_4**3.5 * rho) / (8 * m * r**2 * delta_s)
     val3 = str("y_max may be ignored for torsional vibrations for bridge types 2, 5 and 6")
     
+    text1=str("For vertical flexural vibrations and for bridge types 1 to 6")
     cond1 = (bridge_type in bridge_types) and (motion == "Vertical")
+    text2=str("For torsional vibrations and for bridge types 1, 1A, 3, 3A, 4 and 4A")
     cond2 = (bridge_type in ["1", "1A", "3", "3A", "4", "4A"]) and (motion == "Torsional")
     cond3 = (bridge_type in ["2", "5", "6"]) and (motion == "Torsional")
     
@@ -318,8 +320,10 @@ def y_max_func(bridge_type, motion, c=c, b=b, d_4=d_4, rho=rho, m=m, delta_s=del
         #k, h, phi = symbols('k h phi')
         #c = c_func(k, h, phi, d_4)
         if cond1:
+            print(text1)
             val = val1
         elif cond2:
+            print(text2)
             val = val2
         elif cond3:
             return val3
@@ -329,8 +333,10 @@ def y_max_func(bridge_type, motion, c=c, b=b, d_4=d_4, rho=rho, m=m, delta_s=del
         
         c = c_func(k, h, phi, d_4)
         if cond1:
+            print(text1)
             val = val1
         elif cond2:
+            print(text2)
             val = val2
         elif cond3:
             return val3
