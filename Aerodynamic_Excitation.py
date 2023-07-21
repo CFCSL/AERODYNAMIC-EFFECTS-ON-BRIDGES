@@ -291,6 +291,7 @@ def V_WO_func(V_r=V_r, V_d=V_d, K_1A=K_1A):
 
 #%%
 
+
 # Define the symbols
 c = symbols("c")
 r = symbols("r")
@@ -303,50 +304,39 @@ def c_func(k=k, h=h, phi=phi, d_4=d_4):
 def y_max_func(bridge_type, motion, c=c, b=b, d_4=d_4, rho=rho, m=m, delta_s=delta_s, r=r):
     bridge_types = ["1", "1A", "2", "3", "3A", "4", "4A", "5", "6"]
     
-
     val1 = (c * b**0.5 * d_4**2.5 * rho) / (4 * m * delta_s)
     val2 = (c * b**1.5 * d_4**3.5 * rho) / (8 * m * r**2 * delta_s)
-    text3 = str("y_max may be ignored for torsional vibrations for bridge types 2, 5 and 6")
+    text3 = "y_max may be ignored for torsional vibrations for bridge types 2, 5 and 6"
     
-    text1=str("For vertical flexural vibrations and for bridge types 1 to 6")
+    text1 = "For vertical flexural vibrations and for bridge types 1 to 6"
     cond1 = (bridge_type in bridge_types) and (motion == "Vertical")
-    text2=str("For torsional vibrations and for bridge types 1, 1A, 3, 3A, 4 and 4A")
+    
+    text2 = "For torsional vibrations and for bridge types 1, 1A, 3, 3A, 4 and 4A"
     cond2 = (bridge_type in ["1", "1A", "3", "3A", "4", "4A"]) and (motion == "Torsional")
     cond3 = (bridge_type in ["2", "5", "6"]) and (motion == "Torsional")
     
-    
-      # Calculate c based on the provided values or the function c_func if c is a symbol
+    # Calculate c based on the provided values or the function c_func if c is a symbol
     if c == symbols('c'):
-        #k, h, phi = symbols('k h phi')
-        #c = c_func(k, h, phi, d_4)
         if cond1:
-            text_message = text1
             val = val1
+            text_message = text1
         elif cond2:
-            text_message = text2
             val = val2
+            text_message = text2
         elif cond3:
-            #return(text3)
-            text_message = text3
-            val=None
-			
-        return Eq(y_max, val, evaluate=False),text_message
-        
-    if c is not symbols('c'):
-        
+            return Eq(y_max, val3, evaluate=False), text3
+        return Eq(y_max, val, evaluate=False), text_message
+    else:
         c = c_func(k, h, phi, d_4)
         if cond1:
-            text_message = text1
             val = val1
+            text_message = text1
         elif cond2:
-            text_message = text2
             val = val2
+            text_message = text2
         elif cond3:
-            #return(text3)
-            text_message = text3
-            val=None
-        return  Eq(y_max, val, evaluate=False),text_message
-
+            return Eq(y_max, val3, evaluate=False), text3
+        return Eq(y_max, val, evaluate=False), text_message
 
 
 
