@@ -192,7 +192,7 @@ if P_b>0.04 and P_b<1.00:
 	st.write('2.1.3.4 Limiting criteria')
 	
 	st.markdown(f"""
-			 The bridge shall be shown to be stable with respect to divergent amplitude response in wind storms up to wind speed $V_{WO}$, given by:
+			 The bridge shall be shown to be stable with respect to divergent amplitude response in wind storms up to wind speed $V_WO$, given by:
 			 """)
 	
 # =============================================================================
