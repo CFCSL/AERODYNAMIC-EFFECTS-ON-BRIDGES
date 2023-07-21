@@ -303,15 +303,16 @@ def c_func(k=k, h=h, phi=phi, d_4=d_4):
 
 def y_max_func(bridge_type, motion, c=c, b=b, d_4=d_4, rho=rho, m=m, delta_s=delta_s, r=r):
     bridge_types = ["1", "1A", "2", "3", "3A", "4", "4A", "5", "6"]
-    
+	
+    text1 = "For vertical flexural vibrations and for bridge types 1 to 6"
+    text3 = "y_max may be ignored for torsional vibrations for bridge types 2, 5 and 6"
+    text2 = "For torsional vibrations and for bridge types 1, 1A, 3, 3A, 4 and 4A"
+	
     val1 = (c * b**0.5 * d_4**2.5 * rho) / (4 * m * delta_s)
     val2 = (c * b**1.5 * d_4**3.5 * rho) / (8 * m * r**2 * delta_s)
-    text3 = "y_max may be ignored for torsional vibrations for bridge types 2, 5 and 6"
-    
-    text1 = "For vertical flexural vibrations and for bridge types 1 to 6"
+    val3=None
+
     cond1 = (bridge_type in bridge_types) and (motion == "Vertical")
-    
-    text2 = "For torsional vibrations and for bridge types 1, 1A, 3, 3A, 4 and 4A"
     cond2 = (bridge_type in ["1", "1A", "3", "3A", "4", "4A"]) and (motion == "Torsional")
     cond3 = (bridge_type in ["2", "5", "6"]) and (motion == "Torsional")
     
