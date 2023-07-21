@@ -16,10 +16,10 @@ import numpy as np
 
 
 
-def round_expr(expr, num_digits):
+def round_expr(expr, num_digits=3):
     return expr.xreplace({n : round(n, num_digits) for n in expr.atoms(Number)})
 
-def round_equation(eq, num_digits):
+def round_equation(eq, num_digits=3):
     lhs = eq.lhs
     rhs = eq.rhs
     rounded_rhs = round_expr(rhs, num_digits)
@@ -292,6 +292,8 @@ def V_WO_func(V_r=V_r, V_d=V_d, K_1A=K_1A):
 #%%
 
 
+from sympy import symbols, Eq
+
 # Define the symbols
 c = symbols("c")
 r = symbols("r")
@@ -302,6 +304,15 @@ def c_func(k=k, h=h, phi=phi, d_4=d_4):
     return 3 * (k + h * phi) / d_4
 
 def y_max_func(bridge_type, motion, c=c, b=b, d_4=d_4, rho=rho, m=m, delta_s=delta_s, r=r):
+    c=UnevaluatedExpr(c)
+    b=UnevaluatedExpr(b)
+    d_4=UnevaluatedExpr(d_4)
+    rho=UnevaluatedExpr(rho)
+    m=UnevaluatedExpr(m)  
+    delta_s=UnevaluatedExpr(delta_s)
+    r=UnevaluatedExpr(r)
+
+	
     bridge_types = ["1", "1A", "2", "3", "3A", "4", "4A", "5", "6"]
 	
     text1 = "For vertical flexural vibrations and for bridge types 1 to 6"
@@ -310,7 +321,7 @@ def y_max_func(bridge_type, motion, c=c, b=b, d_4=d_4, rho=rho, m=m, delta_s=del
 	
     val1 = (c * b**0.5 * d_4**2.5 * rho) / (4 * m * delta_s)
     val2 = (c * b**1.5 * d_4**3.5 * rho) / (8 * m * r**2 * delta_s)
-    val3=None
+    val3 = None
 
     cond1 = (bridge_type in bridge_types) and (motion == "Vertical")
     cond2 = (bridge_type in ["1", "1A", "3", "3A", "4", "4A"]) and (motion == "Torsional")
@@ -325,8 +336,8 @@ def y_max_func(bridge_type, motion, c=c, b=b, d_4=d_4, rho=rho, m=m, delta_s=del
             val = val2
             text_message = text2
         elif cond3:
-            return  text3
-        return Eq(y_max, val, evaluate=False), text_message
+            return text3
+        return text_message, Eq(y_max, val, evaluate=False)
     else:
         c = c_func(k, h, phi, d_4)
         if cond1:
@@ -336,8 +347,18 @@ def y_max_func(bridge_type, motion, c=c, b=b, d_4=d_4, rho=rho, m=m, delta_s=del
             val = val2
             text_message = text2
         elif cond3:
-            return  text3
-        return Eq(y_max, val, evaluate=False), text_message
+            return text3
+        return text_message, Eq(y_max, val, evaluate=False)
+
+
+
+K_D=symbols('K_D')
+
+def K_D_func(y_max=y_max, f=f):
+	y_max=UnevaluatedExpr(y_max)
+	f=UnevaluatedExpr(f)
+	val=y_max*f**2
+	return Eq(K_D,val, evaluate=False)
 
 
 
