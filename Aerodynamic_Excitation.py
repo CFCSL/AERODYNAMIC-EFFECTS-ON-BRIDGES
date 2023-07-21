@@ -300,7 +300,7 @@ k, h, phi = symbols('k h phi')
 def c_func(k=k, h=h, phi=phi, d_4=d_4):
     return 3 * (k + h * phi) / d_4
 
-def y_max_func_0(bridge_type, motion, c=c, b=b, d_4=d_4, rho=rho, m=m, delta_s=delta_s, r=r):
+def y_max_func(bridge_type, motion, c=c, b=b, d_4=d_4, rho=rho, m=m, delta_s=delta_s, r=r):
     bridge_types = ["1", "1A", "2", "3", "3A", "4", "4A", "5", "6"]
     
 
