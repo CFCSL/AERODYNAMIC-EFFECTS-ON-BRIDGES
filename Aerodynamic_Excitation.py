@@ -326,7 +326,7 @@ def y_max_func(bridge_type, motion, c=c, b=b, d_4=d_4, rho=rho, m=m, delta_s=del
             text=text2
             val = val2
         elif cond3:
-            return text3
+            text=text3
         return Eq(y_max, val, evaluate=False)
         
     if c is not symbols('c'):
@@ -339,8 +339,8 @@ def y_max_func(bridge_type, motion, c=c, b=b, d_4=d_4, rho=rho, m=m, delta_s=del
             text=text2
             val = val2
         elif cond3:
-            return text3
-        return text, Eq(y_max, val)
+            text=text3
+        return  Eq(y_max, [text,val])
 
 
 
