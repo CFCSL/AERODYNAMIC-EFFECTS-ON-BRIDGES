@@ -58,7 +58,7 @@ sigma_flm=st.sidebar.number_input("peak stress in the structure per unit $\sigma
 sigma_c=st.sidebar.number_input(" reference stress $\sigma_{c}=$",value= 80., min_value=0.0, step=2., format="%.2f")
 
 
-delta_s=st.sidebar.number_input("logarithmic decrement of damping $\delta_s=$", value=0.5, min_value=0.0, step=0.01, format="%.3f")
+delta_s=st.sidebar.number_input("logarithmic decrement of damping $\delta_s=$", value=0.04, min_value=0.02,max_value=1.0, step=0.01, format="%.3f")
 
 K_1A=st.sidebar.number_input("coefficient $K_{1A}=$",value=1.25, max_value=4.0, step=0.1, format="%.2f")
 
@@ -146,6 +146,17 @@ if P_b>0.04 and P_b<1.00:
 		
 	st.subheader("2.1.3 Divergent amplitude response")
 	st.write("2.1.3.2 Galloping and stall flutter")
+	st.markdown(f"""
+			 (a) Vertical motion
+			 Vertical motion need be considered only for bridges of types 3, 3A, 4 and 4A as shown in Figure 1, and only if b < 4d4.
+			 Provided the constraints (i) to (iii) in 2.3 are satisfied Vg shall be calculated from the reduced velocity, VRg, using the formula below:
+				 
+			 (b) Torsional motion
+			 Torsional motion shall be considered for all bridge types. Provided the fascia beams and parapets comply with the constraints given in 2.3, then Vg shall be taken as:
+			 
+			 
+			 """)
+	
 	V_g_0=latex(AF.V_g_func_0(bridge_type,motion))
 	st.latex(V_g_0)
 
@@ -179,6 +190,11 @@ if P_b>0.04 and P_b<1.00:
 		st.latex(V_f)
 	
 	st.write('2.1.3.4 Limiting criteria')
+	
+	st.markdown(f"""
+			 The bridge shall be shown to be stable with respect to divergent amplitude response in wind storms up to wind speed $V_{WO}$, given by:
+			 
+			 """)
 	
 	V_WO=latex(AF.V_WO_func())
 	st.latex(V_WO)
