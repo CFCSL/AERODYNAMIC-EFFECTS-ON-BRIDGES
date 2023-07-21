@@ -72,8 +72,8 @@ st.markdown(f"""
 			The formulae below provide an approximate value to the amplitudes. However if the consequences of such values in the design are significant then wind tunnel tests shall be considered.
 			""")
 			
-y_max=AF.y_max_func(bridge_type=bridge_type, motion=motion)
-
+y_max, text_message=AF.y_max_func(bridge_type=bridge_type, motion=motion)
+st.write(text_message)
 st.latex(latex(y_max))
 
 
