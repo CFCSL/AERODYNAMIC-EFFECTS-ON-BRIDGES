@@ -146,7 +146,7 @@ K_D=AF.K_D_func(y_max=y_max_val, f=selected_f_value)
 st.latex(latex(K_D))
 st.latex(latex(AF.round_equation(K_D.doit())))
 
-
+#
 
 
 
