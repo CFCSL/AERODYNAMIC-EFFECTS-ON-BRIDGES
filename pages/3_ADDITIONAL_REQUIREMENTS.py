@@ -73,8 +73,8 @@ st.markdown(f"""
 			""")
 			
 text, y_max=AF.y_max_func(bridge_type=bridge_type, motion=motion)
-st.latex(latex(text))
-st.latex(latex(y_max))
+
+st.write(text)
 
 
 
