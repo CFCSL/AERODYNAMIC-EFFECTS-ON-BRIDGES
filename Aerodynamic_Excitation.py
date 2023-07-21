@@ -306,7 +306,7 @@ def y_max_func(bridge_type, motion, c=c, b=b, d_4=d_4, rho=rho, m=m, delta_s=del
 
     val1 = (c * b**0.5 * d_4**2.5 * rho) / (4 * m * delta_s)
     val2 = (c * b**1.5 * d_4**3.5 * rho) / (8 * m * r**2 * delta_s)
-    val3 = str("y_max may be ignored for torsional vibrations for bridge types 2, 5 and 6")
+    text3 = str("y_max may be ignored for torsional vibrations for bridge types 2, 5 and 6")
     
     text1=str("For vertical flexural vibrations and for bridge types 1 to 6")
     cond1 = (bridge_type in bridge_types) and (motion == "Vertical")
@@ -320,27 +320,27 @@ def y_max_func(bridge_type, motion, c=c, b=b, d_4=d_4, rho=rho, m=m, delta_s=del
         #k, h, phi = symbols('k h phi')
         #c = c_func(k, h, phi, d_4)
         if cond1:
-            print(text1)
+            text=text1
             val = val1
         elif cond2:
-            print(text2)
+            text=text2
             val = val2
         elif cond3:
-            return val3
+            return text3
         return Eq(y_max, val, evaluate=False)
         
     if c is not symbols('c'):
         
         c = c_func(k, h, phi, d_4)
         if cond1:
-            print(text1)
+            text=text1
             val = val1
         elif cond2:
-            print(text2)
+            text=text2
             val = val2
         elif cond3:
-            return val3
-        return Eq(y_max, val)
+            return text3
+        return text, Eq(y_max, val)
 
 
 
