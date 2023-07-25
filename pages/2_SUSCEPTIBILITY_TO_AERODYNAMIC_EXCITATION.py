@@ -51,7 +51,7 @@ st.header("2.1 Criteria for applicability and consideration of aerodynamic effec
 
 st.write("The aerodynamic susceptibility parameter, $P_b$")
 
-rho=st.number_input('Density of  air rho=', value= 1.226, min_value=0.0, step=0.01, format="%.3f")
+rho=st.sidebar.number_input('Density of  air rho=', value= 1.226, min_value=0.0, step=0.01, format="%.3f")
 
 b=st.number_input("Overall width of the bridge deck $b=$",value= 12.6, min_value=0.0, step=0.2, format="%.2f")
 

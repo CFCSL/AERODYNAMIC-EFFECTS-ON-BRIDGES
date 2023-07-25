@@ -72,7 +72,7 @@ st.header("Vortex excitation effects")
 st.subheader("Amplitudes")
 
 st.markdown(f""" 
-			The maximum amplitudes of flexural and torsional vibrations, ymax, shall be obtained for each mode of vibration for each corresponding critical wind speed less than Vr as defined in 2.1.1.3(b).
+			The maximum amplitudes of flexural and torsional vibrations, $y_{max}$, shall be obtained for each mode of vibration for each corresponding critical wind speed less than Vr as defined in 2.1.1.3(b).
 			The formulae below provide an approximate value to the amplitudes. However if the consequences of such values in the design are significant then wind tunnel tests shall be considered.
 			""")
 			
