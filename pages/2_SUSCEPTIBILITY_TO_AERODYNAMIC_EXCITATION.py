@@ -193,24 +193,36 @@ if section_213:
 	Provided the constraints (i) to (iii) in 2.3 are satisfied, $V_g$ shall be calculated from the reduced velocity, $V_{Rg},$ using the formula below:
 		
 	""", unsafe_allow_html=True)  # Use unsafe_allow_html to render LaTeX
-	latext = r'''
-	$$V_g=V_{Rg}f_Bd_4,$$
+# =============================================================================
+# 	latext = r'''
+# 	$$V_g=V_{Rg}f_Bd_4,$$
+# 	
+# 	where
+# 	
+# 	$$V_{Rg}=\frac{{C_g(m\delta_s)}}{{\rho d_4^2}}$$
+# 	'''
+# 	st.markdown(latext)
+# =============================================================================
 	
-	where
+	lt=AF.V_g_func_0(bridge_type="3",motion="Vertical")
+	st.latex(latex(lt))
+	st.write("where")	
 	
-	$$V_{Rg}=\frac{{C_g(m\delta_s)}}{{\rho d_4^2}}$$
-	'''
-	st.markdown(latext)
+	lt1=AF.V_Rg_func()
+	st.latex(latex(lt1))
+	
+	st.write("$C_g$ is $2.0$ for bridges of type 3 and 4 with side overhang greater than $0.7d_4$ or $1.0$ for bridges of type 3, 3A, 4 and 4A with side overhang less than or equal to $0.7d_4$;")
 	
 	st.markdown(f"""
 			 **(b) Torsional motion**
 			 
 			 Torsional motion shall be considered for all bridge types. Provided the fascia beams and parapets comply with the constraints given in 2.3, then $V_g$ shall be taken as:
-				 
-			 $V_g = 3.3 f_T b$ for bridge types 1, 1A, 2, 5 and 6;
+			 """)
+
+	#$V_g = 3.3 f_T b$ for bridge types 1, 1A, 2, 5 and 6;
 			 
-			$V_g =5f_T b$ for bridge types3,3A,4 and 4A.
-			
+	# $V_g =5f_T b$ for bridge types3,3A,4 and 4A.
+	st.markdown(f"""
 			 For bridges of type 3, 3A, 4 and 4A (see Figure 1) having $b < 4d_4$, $V_g$ shall be taken as the lesser of $12f_T d_4$ or $5f_T b$
 			 """) 
 			 
