@@ -173,76 +173,79 @@ if section_212:
 # 	
 # 
 # =============================================================================
-		
-if default_options[0] in selected_options :
-	st.subheader("2.1.3 Divergent amplitude response")
-	st.write("2.1.3.2 Galloping and stall flutter")
-	st.markdown(f"""
-			 (a) Vertical motion
-			 Vertical motion need be considered only for bridges of types 3, 3A, 4 and 4A as shown in Figure 1, and only if b < 4d4.
-			 Provided the constraints (i) to (iii) in 2.3 are satisfied Vg shall be calculated from the reduced velocity, VRg, using the formula below:
-				 
-			 (b) Torsional motion
-			 Torsional motion shall be considered for all bridge types. Provided the fascia beams and parapets comply with the constraints given in 2.3, then Vg shall be taken as:
-			 
-			 
-			 """)
-
-	V_g_0=latex(AF.V_g_func_0(bridge_type,motion))
-	st.latex(V_g_0)
-	
-	delta_s=st.number_input("logarithmic decrement of damping $\delta_s=$", value=0.04, min_value=0.02,max_value=1.0, step=0.01, format="%.3f")
-
-	V_g=AF.round_equation(AF.V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s),2)
-	st.latex(latex(V_g))
-
-	st.write("2.1.3.3 Classical flutter")
-	V_f=latex(AF.V_f_func())
-	st.latex(V_f)
-	st.write("Where")
-	r=st.number_input('polar radius $r=$', value=5.985, min_value=0.0, step=0.5, format="%.3f")
-	V_Rf=latex(AF.V_Rf_func())
-	st.latex(V_Rf)
-	V_Rf=latex(AF.V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b))
-	st.latex(V_Rf)
-	V_Rf=AF.round_equation((AF.V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b).doit()),2)
-	st.latex(latex(V_Rf))
-	V_Rf_value=AF.V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b).doit().rhs
-	if V_Rf_value<2.5:
-		st.write("$V_{Rf}$ is not less than $2.5$. If $V_{Rf} \leq 2.5$ then the value  $2.5$ is taken")
-		V_Rf_value=2.5
-		V_f=latex(AF.V_f_func(V_Rf=V_Rf_value,f_T=f_T,b=b))
-		st.latex(V_f)
-		V_f=latex(AF.V_f_func(V_Rf=V_Rf_value,f_T=f_T,b=b).doit())
-		st.latex(V_f)
-		
-	else:
-		V_f=latex(AF.V_f_func(V_Rf=V_Rf_value,f_T=f_T,b=b))
-		st.latex(V_f)
-		V_f=latex(AF.V_f_func(V_Rf=V_Rf_value,f_T=f_T,b=b).doit())
-		st.latex(V_f)
-		
-		st.write('2.1.3.4 Limiting criteria')
-		
-		st.write("The bridge shall be shown to be stable with respect to divergent amplitude response in wind storms up to wind speed $V_{WO}$, given by:")
-
-		
-		K_1A=st.sidebar.number_input("coefficient $K_{1A}=$",value=1.25, max_value=4.0, step=0.1, format="%.2f")
-
-		V_d=st.sidebar.number_input('the maximum wind gust speed $V_d=$',min_value=V_r, value=50., step=1., format="%.2f")
-		
-		
-		
-		
-		V_WO=latex(AF.V_WO_func())
-		st.latex(V_WO)
-		V_WO=latex(AF.V_WO_func(V_r=V_r, V_d=V_d, K_1A=K_1A))
-		st.latex(V_WO)
-		V_WO=AF.round_equation((AF.V_WO_func(V_r=V_r, V_d=V_d, K_1A=K_1A).doit()),2)
-		st.latex(latex(V_WO))
-	
-
-
-
-
-
+# =============================================================================
+# 		
+# if default_options[0] in selected_options :
+# 	st.subheader("2.1.3 Divergent amplitude response")
+# 	st.write("2.1.3.2 Galloping and stall flutter")
+# 	st.markdown(f"""
+# 			 (a) Vertical motion
+# 			 Vertical motion need be considered only for bridges of types 3, 3A, 4 and 4A as shown in Figure 1, and only if b < 4d4.
+# 			 Provided the constraints (i) to (iii) in 2.3 are satisfied Vg shall be calculated from the reduced velocity, VRg, using the formula below:
+# 				 
+# 			 (b) Torsional motion
+# 			 Torsional motion shall be considered for all bridge types. Provided the fascia beams and parapets comply with the constraints given in 2.3, then Vg shall be taken as:
+# 			 
+# 			 
+# 			 """)
+# 
+# 	V_g_0=latex(AF.V_g_func_0(bridge_type,motion))
+# 	st.latex(V_g_0)
+# 	
+# 	delta_s=st.number_input("logarithmic decrement of damping $\delta_s=$", value=0.04, min_value=0.02,max_value=1.0, step=0.01, format="%.3f")
+# 
+# 	V_g=AF.round_equation(AF.V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s),2)
+# 	st.latex(latex(V_g))
+# 
+# 	st.write("2.1.3.3 Classical flutter")
+# 	V_f=latex(AF.V_f_func())
+# 	st.latex(V_f)
+# 	st.write("Where")
+# 	r=st.number_input('polar radius $r=$', value=5.985, min_value=0.0, step=0.5, format="%.3f")
+# 	V_Rf=latex(AF.V_Rf_func())
+# 	st.latex(V_Rf)
+# 	V_Rf=latex(AF.V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b))
+# 	st.latex(V_Rf)
+# 	V_Rf=AF.round_equation((AF.V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b).doit()),2)
+# 	st.latex(latex(V_Rf))
+# 	V_Rf_value=AF.V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b).doit().rhs
+# 	if V_Rf_value<2.5:
+# 		st.write("$V_{Rf}$ is not less than $2.5$. If $V_{Rf} \leq 2.5$ then the value  $2.5$ is taken")
+# 		V_Rf_value=2.5
+# 		V_f=latex(AF.V_f_func(V_Rf=V_Rf_value,f_T=f_T,b=b))
+# 		st.latex(V_f)
+# 		V_f=latex(AF.V_f_func(V_Rf=V_Rf_value,f_T=f_T,b=b).doit())
+# 		st.latex(V_f)
+# 		
+# 	else:
+# 		V_f=latex(AF.V_f_func(V_Rf=V_Rf_value,f_T=f_T,b=b))
+# 		st.latex(V_f)
+# 		V_f=latex(AF.V_f_func(V_Rf=V_Rf_value,f_T=f_T,b=b).doit())
+# 		st.latex(V_f)
+# 		
+# 		st.write('2.1.3.4 Limiting criteria')
+# 		
+# 		st.write("The bridge shall be shown to be stable with respect to divergent amplitude response in wind storms up to wind speed $V_{WO}$, given by:")
+# 
+# 		
+# 		K_1A=st.sidebar.number_input("coefficient $K_{1A}=$",value=1.25, max_value=4.0, step=0.1, format="%.2f")
+# 
+# 		V_d=st.sidebar.number_input('the maximum wind gust speed $V_d=$',min_value=V_r, value=50., step=1., format="%.2f")
+# 		
+# 		
+# 		
+# 		
+# 		V_WO=latex(AF.V_WO_func())
+# 		st.latex(V_WO)
+# 		V_WO=latex(AF.V_WO_func(V_r=V_r, V_d=V_d, K_1A=K_1A))
+# 		st.latex(V_WO)
+# 		V_WO=AF.round_equation((AF.V_WO_func(V_r=V_r, V_d=V_d, K_1A=K_1A).doit()),2)
+# 		st.latex(latex(V_WO))
+# 	
+# 
+# 
+# 
+# 
+# 
+# 
+# =============================================================================
