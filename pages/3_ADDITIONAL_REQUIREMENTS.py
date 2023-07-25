@@ -46,29 +46,6 @@ f_T=st.sidebar.number_input("natural frequency in torsion $f_T=$", value=1.30, m
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 st.header("3.1 Vortex excitation effects")
 
 st.subheader("3.1.2 Amplitudes")
