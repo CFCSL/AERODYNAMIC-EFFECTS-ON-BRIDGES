@@ -15,6 +15,10 @@ import Aerodynamic_Excitation as AF
 
 
 
+st.image("figures/fig1a.jpeg", width=500)
+st.image("figures/fig1b.jpeg", width=500)
+
+
 #Parameters in the sidebar
 
 st.sidebar.header("Global parameters")

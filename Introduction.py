@@ -27,8 +27,7 @@ This Standard specifies design requirements for bridges regarding aerodynamic ef
 st.markdown("[Click here to see PDF document](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/bd4901.pdf)")
 
 
-st.image("figures/fig1a.jpeg", width=600)
-st.image("figures/fig1b.jpeg", width=600)
+
 
 
 
