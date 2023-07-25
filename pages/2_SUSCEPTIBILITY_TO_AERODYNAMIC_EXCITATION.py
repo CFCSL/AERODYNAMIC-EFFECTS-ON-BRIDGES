@@ -26,7 +26,7 @@ default_options = [
     "2.1.3 Divergent amplitude response"
 ]
 
-selected_options = st.sidebar.multiselect("Select options:", options, default=default_options)
+selected_options = st.sidebar.checkbox("Select options:", options, default=default_options)
 
 
 #Parameters in the sidebar
