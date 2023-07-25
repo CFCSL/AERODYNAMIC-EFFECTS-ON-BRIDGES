@@ -48,9 +48,8 @@ f_T=st.sidebar.number_input("natural frequency in torsion $f_T=$", value=1.30, m
 
 st.header("3.1 Vortex excitation effects")
 
-st.subheader("3.1.2 Amplitudes")
 
-section_312="3.1.2 Amplitudes"
+section_312=st.sidebar.checkbox(f"**3.1.2 Amplitudes**")
 if section_312:
 
 	st.write("The maximum amplitudes of flexural and torsional vibrations, $y_{max}$, shall be obtained for each mode of vibration for each corresponding critical wind speed less than Vr as defined in 2.1.1.3(b). The formulae below provide an approximate value to the amplitudes. However if the consequences of such values in the design are significant then wind tunnel tests shall be considered.")
@@ -101,7 +100,7 @@ if section_312:
 	    y_max_val=round(equation.doit().rhs,3)
 
 #%%	
-section_313="3.1.3 Assessment of vortex excitation effects"
+section_313=st.sidebar.checkbox(f"**3.1.3 Assessment of vortex excitation effects**")
 if section_313:
 	st.subheader("3.1.3 Assessment of vortex excitation effects")
 	

@@ -184,16 +184,36 @@ if section_213:
 	
 	st.subheader("2.1.3 Divergent amplitude response")
 	st.markdown(f"**2.1.3.2 Galloping and stall flutter**")
+	st.markdown("""
+	
+	**(a) Vertical motion**
+	
+	Vertical motion needs to be considered only for bridges of types 3, 3A, 4 and 4A as shown in Figure 1, and only if $b < 4d_4$.
+	
+	Provided the constraints (i) to (iii) in 2.3 are satisfied, $V_g$ shall be calculated from the reduced velocity, $V_{Rg},$ using the formula below:
+		
+	""", unsafe_allow_html=True)  # Use unsafe_allow_html to render LaTeX
+	latext = r'''
+	$$V_g=V_{Rg}f_Bd_4,$$
+	
+	where
+	
+	$$V_{Rg}=\frac{{C_g(m\delta_s)}}{{\rho d_4^2}}$$
+	'''
+	st.markdown(latext)
+	
 	st.markdown(f"""
-			 (a) Vertical motion
-			 Vertical motion need be considered only for bridges of types 3, 3A, 4 and 4A as shown in Figure 1, and only if b < 4d4.
-			 Provided the constraints (i) to (iii) in 2.3 are satisfied Vg shall be calculated from the reduced velocity, VRg, using the formula below:
+			 **(b) Torsional motion**
+			 
+			 Torsional motion shall be considered for all bridge types. Provided the fascia beams and parapets comply with the constraints given in 2.3, then $V_g$ shall be taken as:
 				 
-			 (b) Torsional motion
-			 Torsional motion shall be considered for all bridge types. Provided the fascia beams and parapets comply with the constraints given in 2.3, then Vg shall be taken as:
+			 $V_g = 3.3 f_T b$ for bridge types 1, 1A, 2, 5 and 6;
 			 
+			$V_g =5f_T b$ for bridge types3,3A,4 and 4A.
+			
+			 For bridges of type 3, 3A, 4 and 4A (see Figure 1) having $b < 4d_4$, $V_g$ shall be taken as the lesser of $12f_T d_4$ or $5f_T b$
+			 """) 
 			 
-			 """)
 
 	V_g_0=latex(AF.V_g_func_0(bridge_type,motion))
 	st.latex(V_g_0)
@@ -228,7 +248,8 @@ if section_213:
 		st.latex(V_f)
 		V_f=latex(AF.V_f_func(V_Rf=V_Rf_value,f_T=f_T,b=b).doit())
 		st.latex(V_f)
-		
+	st.write("Alternatively the value of $V_f$ may be determined by wind tunnel tests; see 6.")
+	
 	st.markdown(f'**2.1.3.4 Limiting criteria**')
 	
 	st.write("The bridge shall be shown to be stable with respect to divergent amplitude response in wind storms up to wind speed $V_{WO}$, given by:")
@@ -245,6 +266,8 @@ if section_213:
 	st.latex(V_WO)
 	V_WO=AF.round_equation((AF.V_WO_func(V_r=V_r, V_d=V_d, K_1A=K_1A).doit()),2)
 	st.latex(latex(V_WO))
+	
+	st.write("Where the values of $V_g$ or $V_f$ derived in accordance with 2.1.3.2 or 2.1.3.3 respectively are lower than $V_{WO}$ further studies as noted in 1.6 or wind-tunnel tests in accordance with 3.2 shall be undertaken.")
 
 
 
