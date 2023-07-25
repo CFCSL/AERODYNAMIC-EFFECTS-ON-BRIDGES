@@ -15,8 +15,7 @@ import Aerodynamic_Excitation as AF
 
 
 
-st.image("figures/fig1a.jpeg", width=500)
-st.image("figures/fig1b.jpeg", width=500)
+
 
 
 #Parameters in the sidebar
@@ -53,6 +52,7 @@ f_T=st.sidebar.number_input("natural frequency in torsion $f_T=$", value=1.30, m
 # Show the calculations
 	
 st.header("2.1 Criteria for applicability and consideration of aerodynamic effects")
+
 
 st.write("The aerodynamic susceptibility parameter, $P_b$")
 
