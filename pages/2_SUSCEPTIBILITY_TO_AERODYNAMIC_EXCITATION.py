@@ -26,8 +26,16 @@ default_options = [
     "2.1.3 Divergent amplitude response"
 ]
 
-selected_options = st.sidebar.checkbox("2.1.1 Limited amplitude response - vortex excitation")#, options=options)#, default=default_options)
+section_211 = st.sidebar.checkbox("2.1.1 Limited amplitude response - vortex excitation")#, options=options)#, default=default_options)
 
+if section_211:
+	st.write("Hello")
+	
+	
+section_212 = st.sidebar.checkbox("2.1.1 Limited amplitude response - vortex excitation")#, options=options)#, default=default_options)
+
+if section_212:
+	st.write("Hello")
 
 #Parameters in the sidebar
 
