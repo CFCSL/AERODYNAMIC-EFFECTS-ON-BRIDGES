@@ -25,9 +25,9 @@ This Standard specifies design requirements for bridges regarding aerodynamic ef
 
 st.markdown("[Click here to see PDF document](https://github.com/FCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/bd4901.pdf)")
 
-st.write("The calculation files in Jupyter Notebook and Python  are available in GitHub")
-st.markdown("[Jupyter Notebook document](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/Aerodynamic_Excitation-Copy1.ipynb)")
-st.markdown("[Python document](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/Aerodynamic_Excitation.py)")
+st.markdown("Files in Jupyter Notebook and Python  are available in GitHub:")
+st.markdown("[Jupyter Notebook](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/Aerodynamic_Excitation-Copy1.ipynb)")
+st.markdown("[Python](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/Aerodynamic_Excitation.py)")
 
 
 
