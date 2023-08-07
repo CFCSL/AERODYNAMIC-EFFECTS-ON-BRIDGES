@@ -24,29 +24,29 @@ st.sidebar.header("Global parameters")
 
 bridge_types = ["1", "1A", "2", "3", "3A", "4", "4A", "5", "6"]
 
-bridge_type=st.sidebar.selectbox("bridge_type", options=bridge_types)
+bridge_type=st.sidebar.selectbox("Bridge type", options=bridge_types)
 
 motions=["Vertical", "Torsional"]
 
-motion=st.sidebar.selectbox("motion", options=motions)
+motion=st.sidebar.selectbox("Motion", options=motions)
 
-rho=st.sidebar.number_input('Density of  air rho=', value= 1.226, min_value=0.0, step=0.01, format="%.3f")
+rho=st.sidebar.number_input('Density of  air $\rho$ =', value= 1.226, min_value=0.0, step=0.01, format="%.3f")
 
-b=st.sidebar.number_input("Overall width of the bridge deck $b=$",value= 12.6, min_value=0.0, step=0.2, format="%.2f")
+b=st.sidebar.number_input("Overall width of the bridge deck $b = $",value= 12.6, min_value=0.0, step=0.2, format="%.2f")
 
-m=st.sidebar.number_input('Mass per unit length of the bridge m=', value= 6306., min_value=0.0, step=1., format="%.2f")
+m=st.sidebar.number_input('Mass per unit length of the bridge $m = $', value= 6306., min_value=0.0, step=1., format="%.2f")
 
-L=st.sidebar.number_input('Length of the relevant maximum spanvof the bridge L=', value= 96.673, min_value=0.0, step=0.1, format="%.3f")
+L=st.sidebar.number_input('Length of the relevant maximum spanvof the bridge $L =$', value= 96.673, min_value=0.0, step=0.1, format="%.3f")
 
-V_r=st.sidebar.number_input('hourly mean wind speed $V_r$=',  min_value=20.0, max_value=40., step=1., format="%.2f")
+V_r=st.sidebar.number_input('Hourly mean wind speed $V_r =$',  min_value=20.0, max_value=40., step=1., format="%.2f")
 
-b_0=st.sidebar.number_input('Effective width of the bridge $b^*=$', value=b/2,min_value=0.0, max_value=b, step=0.2, format="%.2f")
+b_0=st.sidebar.number_input('Effective width of the bridge $b^* = $', value=b/2,min_value=0.0, max_value=b, step=0.2, format="%.2f")
 
-d_4=st.sidebar.number_input('Depth of the bridge $d_4$=', value= 3.8, min_value=0.0, step=0.01, format="%.3f")
+d_4=st.sidebar.number_input('Depth of the bridge $d_4 =$', value= 3.8, min_value=0.0, step=0.01, format="%.3f")
 
-f_B=st.sidebar.number_input('Natural frequency in bending $f_B$=', value= 1.17, min_value=0.0, step=0.01, format="%.3f")
+f_B=st.sidebar.number_input('Natural frequency in bending $f_B =$', value= 1.17, min_value=0.0, step=0.01, format="%.3f")
 
-f_T=st.sidebar.number_input("natural frequency in torsion $f_T=$", value=1.30, min_value=0.0, step=0.1, format="%.2f")
+f_T=st.sidebar.number_input("Natural frequency in torsion $f_T=$", value=1.30, min_value=0.0, step=0.1, format="%.2f")
 
 
 # Show the calculations
@@ -92,9 +92,9 @@ options = [
 
 options=[f"**{options[0]}**",f"**{options[1]}**",f"**{options[2]}**"]
 
-#%%
 
-st.sidebar.markdown("---")	
+
+st.sidebar.markdown("---")
 
 
 
@@ -105,6 +105,7 @@ if section_211:
 	st.subheader("2.1.1 Limited amplitude response - vortex excitation")
 	
 	st.markdown(f"**2.1.1.1 General**")
+
 	
 	st.write("Estimates of the critical wind speed for vortex excitation for both bending and torsion ($V_{cr}$) shall be derived according to 2.1.1.2. For certain truss girder bridges see 2.1.1.3(c). The limiting criteria given in 2.1.1.3 shall then be satisfied.")
 	
@@ -113,20 +114,32 @@ if section_211:
 	st.write("The critical wind speed for vortex excitation, $V_{cr}$, is defined as the velocity of steady air flow or the mean velocity of turbulent flow at which maximum aerodynamic excitation due to vortex shedding occurs and shall be calculated as follows for both vertical bending and torsional modes of vibration of box and plate girder bridges. Alternatively $V_{cr}$ may be determined by appropriate wind tunnel tests on suitable scale models. For truss bridges with solidity $\phi < 0.5$, refer to 2.1.1.3(c). When $\phi ≥ 0.5$ the equations for plate girders may be used conservatively, but taking the depth $d_4$ as $\phi d_4$ (see 2.3 and Figures 1 and 2).")
 
 
-
-	f=st.sidebar.selectbox('$f$ either $f_B$ or $f_T$', options=[f_B,f_T])
-
+	
 	V_cr=latex(AF.V_cr_func(bridge_type=bridge_type))
 	st.latex(V_cr)
-	V_cr=latex(AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f))
-	st.latex(V_cr)
 
-	#V_cr=round(AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit().rhs,3)
-	V_cr=AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit()
-	st.latex(latex(V_cr))
-	V_cr=round(AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit().rhs,3)
+
+	f_options = {
+    f"$f_B={f_B}$": f_B,
+    f"$f_T={f_T}$": f_T}
+
+
+	f_B_selected=st.checkbox(list(f_options.keys())[0])
 	
 	
+	if f_B_selected:
+		f = f_B
+		V_cr = AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit()
+		st.latex(latex(V_cr))
+		
+	f_T_selected=st.checkbox(list(f_options.keys())[1])
+	if f_T_selected:
+		f = f_T
+		V_cr = AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit()
+		st.latex(latex(V_cr))
+	
+
+
 
 	st.write("2.1.1.3 Limiting criteria")
 
@@ -180,7 +193,10 @@ if section_212:
 	st.markdown(f"**If these conditions are not satisfied the dynamic effects of turbulence response shall be considered in accordance with 3.3.**")
 	
 
+
+
 st.sidebar.markdown("---")	
+
 section_213 = st.sidebar.checkbox(options[2])
 if section_213:
 	st.subheader("2.1.3.1 General")
