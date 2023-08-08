@@ -26,6 +26,29 @@ def round_equation(eq, num_digits=3):
     return Eq(lhs, rounded_rhs)
 
 
+
+
+def GC_i():
+	text="""
+	(i) Solid edge members, such as fascia beams
+and solid parapets shall have a total depth
+less than 0.2d
+4 unless positioned closer than
+0.5d
+4 from the outer girder when they shall
+not protrude above the deck by more than
+0.2d
+4 nor below the deck by more than
+0.5d
+4. In defining such edge members, edge
+stiffening of the slab to a depth of 0.5 times
+the slab thickness may be ignored.
+	"""
+	
+
+
+
+
 #%%
 ## 2.1 Criteria for applicability and consideration of aerodynamic effects
 # Define the symbols
