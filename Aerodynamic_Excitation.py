@@ -270,7 +270,7 @@ def V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, 
             C_g=C_g_func(bridge_type, b=b, b_0=b_0, d_4=d_4)
             V_Rg=V_Rg_func(C_g=C_g, m=m, delta_s=delta_s, rho=rho, d_4=d_4)
             val=V_Rg * f_B * d_4
-#        if motion == "Torsional":
+#        
             overhang = (b - b_0) / 2
             val1 = 2.0
             val2 = 1.0
@@ -283,7 +283,7 @@ def V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, 
                 val = V_Rg * f_B * d_4
             else:
                 val = float('nan')
-        else:
+        if motion == "Torsional":
             val3 = Min(5.5 * f_T * b, 12 * f_T * d_4)
             val4 = 5.5 * f_T * b
             
