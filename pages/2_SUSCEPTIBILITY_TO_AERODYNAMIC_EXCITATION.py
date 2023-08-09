@@ -242,8 +242,8 @@ if section_213:
 	
 	if bridge_type in ["3", "3A", "4", "4A", "5", "6"]:
 		#st.write(v1)
-		V_g_0=latex(AF.V_g_func_0(bridge_type,motion="Vertical"))
-		st.latex(V_g_0)
+		#V_g_0=latex(AF.V_g_func_0(bridge_type,motion="Vertical"))
+		#st.latex(V_g_0)
 		
 		V_g=AF.round_equation(AF.V_g_func(bridge_type, motion="Vertical", b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s),2)
 		

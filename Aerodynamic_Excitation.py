@@ -213,7 +213,7 @@ def V_Rg_func(C_g=C_g, m=m, delta_s=delta_s, rho=rho, d_4=d_4):
 	d_4 = UnevaluatedExpr(d_4)
 	result=(C_g*m*delta_s)/(rho*d_4**2)
 
-	return  result# Eq(V_Rg, result, evaluate=False)
+	return  Eq(V_Rg, result, evaluate=False)
 
 
 
@@ -273,7 +273,7 @@ def V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, 
         if motion == "Vertical":
             C_g=C_g_func(bridge_type, b=b, b_0=b_0, d_4=d_4)
       
-            V_Rg=V_Rg_func(C_g=C_g, m=m, delta_s=delta_s, rho=rho, d_4=d_4).doit()
+            V_Rg=V_Rg_func(C_g=C_g, m=m, delta_s=delta_s, rho=rho, d_4=d_4).doit().rhs
             val=V_Rg * f_B * d_4
 
 
