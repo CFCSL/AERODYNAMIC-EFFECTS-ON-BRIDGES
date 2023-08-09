@@ -255,7 +255,7 @@ if section_213:
 			 For bridges of type 3, 3A, 4 and 4A (see Figure 1) having $b < 4d_4$, $V_g$ shall be taken as the lesser of $12f_T d_4$ or $5f_T b$
 			 """)
 			 
-			 
+
 	motions=["Vertical", "Torsional"]
 	
 	motion=st.selectbox(f"Select the motion", options=motions)
@@ -264,8 +264,8 @@ if section_213:
 	V_g_0=latex(AF.V_g_func_0(bridge_type,motion))
 	st.latex(V_g_0)
 	
-	delta_s=st.sidebar.number_input("logarithmic decrement of damping $\delta_s=$", value=0.04, min_value=0.02,max_value=1.0, step=0.01, format="%.3f")
-	r=st.sidebar.number_input('polar radius $r=$', value=5.985, min_value=0.0, step=0.5, format="%.3f")
+	delta_s=st.sidebar.number_input("Structural damping expressed as logarithmic decrement $\delta_s=$", value=0.04, min_value=0.02,max_value=1.0, step=0.01, format="%.3f")
+	r=st.sidebar.number_input('Polar radius of gyration of the effective bridge cross section $r[m]=$', value=5.985, min_value=0.0, step=0.5, format="%.3f")
 	
 	
 	V_g=AF.round_equation(AF.V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s),2)
