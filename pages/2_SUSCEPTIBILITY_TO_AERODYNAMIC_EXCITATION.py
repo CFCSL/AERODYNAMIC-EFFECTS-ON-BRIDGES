@@ -280,7 +280,7 @@ if section_213:
 
 	
 	if V_g==False:
-		st.warning("If $V_g=NaN (or False)$, please check the condition in Vertical motion")
+		st.warning("In case of $V_g=NaN (or False)$, please check the condition in Vertical motion")
 		
 
 		
