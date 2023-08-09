@@ -121,8 +121,8 @@ if section_211:
     f"$f_T={f_T}$": f_T}
 
 
-	f_B_selected=st.checkbox(list(f_options.keys())[0])
-	
+	f_B_selected=list(f_options.keys())[0]
+	st.write(f_B_selected)
 	
 	if f_B_selected:
 		f = f_B
@@ -130,7 +130,8 @@ if section_211:
 		st.latex(latex(V_cr)+f'(m/s)')
 		V_cr_B = AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit().rhs
 		
-	f_T_selected=st.checkbox(list(f_options.keys())[1])
+	f_T_selected=list(f_options.keys())[1]
+	st.write(f"{f_T_selected}")
 	if f_T_selected:
 		f = f_T
 		V_cr = AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit()
