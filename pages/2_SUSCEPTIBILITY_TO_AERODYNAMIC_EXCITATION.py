@@ -24,29 +24,26 @@ st.sidebar.header("Global parameters")
 
 bridge_types = ["1", "1A", "2", "3", "3A", "4", "4A", "5", "6"]
 
-bridge_type=st.sidebar.selectbox("bridge_type", options=bridge_types)
+bridge_type=st.sidebar.selectbox("Bridge type", options=bridge_types)
 
-motions=["Vertical", "Torsional"]
 
-motion=st.sidebar.selectbox("motion", options=motions)
+rho=st.sidebar.number_input('Density of  air $\\rho [kg/m^3]$ =', value= 1.226, min_value=0.0, step=0.01, format="%.3f")
 
-rho=st.sidebar.number_input('Density of  air rho=', value= 1.226, min_value=0.0, step=0.01, format="%.3f")
+b=st.sidebar.number_input("Overall width of the bridge deck $b [m] = $",value= 12.6, min_value=0.0, step=0.2, format="%.2f")
 
-b=st.sidebar.number_input("Overall width of the bridge deck $b=$",value= 12.6, min_value=0.0, step=0.2, format="%.2f")
+m=st.sidebar.number_input('Mass per unit length of the bridge $m [kg/m]= $', value= 6306., min_value=0.0, step=1., format="%.2f")
 
-m=st.sidebar.number_input('Mass per unit length of the bridge m=', value= 6306., min_value=0.0, step=1., format="%.2f")
+L=st.sidebar.number_input('Length of the relevant maximum spanvof the bridge $L [m] =$', value= 96.673, min_value=0.0, step=0.1, format="%.3f")
 
-L=st.sidebar.number_input('Length of the relevant maximum spanvof the bridge L=', value= 96.673, min_value=0.0, step=0.1, format="%.3f")
+V_r=st.sidebar.number_input('Hourly mean wind speed $V_r [m/s]=$',  min_value=20.0, max_value=40., step=1., format="%.2f")
 
-V_r=st.sidebar.number_input('hourly mean wind speed $V_r$=',  min_value=20.0, max_value=40., step=1., format="%.2f")
+b_0=st.sidebar.number_input('Effective width of the bridge $b^* [m]= $', value=b/2,min_value=0.0, max_value=b, step=0.2, format="%.2f")
 
-b_0=st.sidebar.number_input('Effective width of the bridge $b^*=$', value=b/2,min_value=0.0, max_value=b, step=0.2, format="%.2f")
+d_4=st.sidebar.number_input('Depth of the bridge $d_4 [m] =$', value= 3.8, min_value=0.0, step=0.01, format="%.3f")
 
-d_4=st.sidebar.number_input('Depth of the bridge $d_4$=', value= 3.8, min_value=0.0, step=0.01, format="%.3f")
+f_B=st.sidebar.number_input('Natural frequency in bending $f_B [Hz]=$', value= 1.17, min_value=0.0, step=0.01, format="%.3f")
 
-f_B=st.sidebar.number_input('Natural frequency in bending $f_B$=', value= 1.17, min_value=0.0, step=0.01, format="%.3f")
-
-f_T=st.sidebar.number_input("natural frequency in torsion $f_T=$", value=1.30, min_value=0.0, step=0.1, format="%.2f")
+f_T=st.sidebar.number_input("Natural frequency in torsion $f_T [Hz]=$", value=1.30, min_value=0.0, step=0.1, format="%.2f")
 
 
 # Show the calculations
@@ -92,9 +89,9 @@ options = [
 
 options=[f"**{options[0]}**",f"**{options[1]}**",f"**{options[2]}**"]
 
-#%%
 
-st.sidebar.markdown("---")	
+
+st.sidebar.markdown("---")
 
 
 
@@ -105,6 +102,7 @@ if section_211:
 	st.subheader("2.1.1 Limited amplitude response - vortex excitation")
 	
 	st.markdown(f"**2.1.1.1 General**")
+
 	
 	st.write("Estimates of the critical wind speed for vortex excitation for both bending and torsion ($V_{cr}$) shall be derived according to 2.1.1.2. For certain truss girder bridges see 2.1.1.3(c). The limiting criteria given in 2.1.1.3 shall then be satisfied.")
 	
@@ -113,20 +111,33 @@ if section_211:
 	st.write("The critical wind speed for vortex excitation, $V_{cr}$, is defined as the velocity of steady air flow or the mean velocity of turbulent flow at which maximum aerodynamic excitation due to vortex shedding occurs and shall be calculated as follows for both vertical bending and torsional modes of vibration of box and plate girder bridges. Alternatively $V_{cr}$ may be determined by appropriate wind tunnel tests on suitable scale models. For truss bridges with solidity $\phi < 0.5$, refer to 2.1.1.3(c). When $\phi ≥ 0.5$ the equations for plate girders may be used conservatively, but taking the depth $d_4$ as $\phi d_4$ (see 2.3 and Figures 1 and 2).")
 
 
-
-	f=st.sidebar.selectbox('$f$ either $f_B$ or $f_T$', options=[f_B,f_T])
-
+	
 	V_cr=latex(AF.V_cr_func(bridge_type=bridge_type))
 	st.latex(V_cr)
-	V_cr=latex(AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f))
-	st.latex(V_cr)
 
-	#V_cr=round(AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit().rhs,3)
-	V_cr=AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit()
-	st.latex(latex(V_cr))
-	V_cr=round(AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit().rhs,3)
+
+	f_options = {
+    f"$f_B={f_B}$": f_B,
+    f"$f_T={f_T}$": f_T}
+
+
+	f_B_selected=st.checkbox(list(f_options.keys())[0])
 	
 	
+	if f_B_selected:
+		f = f_B
+		V_cr = AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit()
+		st.latex(latex(V_cr)+f'(m/s)')
+		V_cr_B = AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit().rhs
+		
+	f_T_selected=st.checkbox(list(f_options.keys())[1])
+	if f_T_selected:
+		f = f_T
+		V_cr = AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit()
+		st.latex(latex(V_cr)+f'(m/s)')
+		V_cr_T = AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit().rhs
+	
+
 
 	st.write("2.1.1.3 Limiting criteria")
 
@@ -140,11 +151,17 @@ if section_211:
 	V_vs=latex(AF.V_vs_func(V_r=V_r))
 	st.latex(V_vs)
 	V_vs=latex(AF.V_vs_func(V_r=V_r).doit())
-	st.latex(V_vs)
+	st.latex(V_vs+f'(m/s)')
 	V_vs=round(AF.V_vs_func(V_r=V_r).doit().rhs,3)
+	
 
-	if V_cr>=V_vs:
-		st.write(" $V_{cr} \geq V_{vs}$ the bridge is considered stable.")
+	# Use conditional expressions to set V_cr based on selection
+	V_cr = min(V_cr_B, V_cr_T) if f_B_selected and f_T_selected else V_cr_B if f_B_selected else V_cr_T if f_T_selected else None
+	
+	# Check if V_cr is greater than or equal to V_vs and display the result
+	if V_cr is not None and V_cr >= V_vs:
+
+		st.write("$V_{cr} \geq V_{vs}$ the bridge is considered stable.")
 
 	st.write("(c) In addition, truss girder bridges shall be considered stable with regard to vortex excited vibrations provided $\phi < 0.5$, where $\phi$ is the solidity ratio of the front face of the windward truss, defined as the ratio of the net total projected area of the truss components to the projected area encompassed by the outer boundaries of the truss (i.e. excluding the depth of the deck). For trusses with $\phi ≥ 0.5$, refer to 2.1.1.2.")
 	#########
@@ -158,12 +175,12 @@ if section_212:
 
 	st.subheader("2.1.2 Limited amplitude response - turbulence")
 	#if f>1: 
-	st.write("Provided the fundamental frequencies in both bending and torsion calculated in accordance with 2.1.1.2 are greater than 1Hz, the dynamic magnification effects of turbulence may be ignored.")
+	st.write("Provided the fundamental frequencies in both bending and torsion calculated in accordance with 2.1.1.2 are greater than $1Hz$, the dynamic magnification effects of turbulence may be ignored.")
 	#else: 
 		
-	V_s=st.sidebar.number_input(' site hourly mean wind speed (10m above ground level) $V_s$=',  min_value=37.0, max_value=40., step=1., format="%.2f")
-	sigma_flm=st.sidebar.number_input("peak stress in the structure per unit $\sigma_{flm}=$",value= 600., min_value=0.0, step=10., format="%.2f")
-	sigma_c=st.sidebar.number_input(" reference stress $\sigma_{c}=$",value= 80., min_value=0.0, step=2., format="%.2f")
+	V_s=st.sidebar.number_input(' Site hourly mean wind speed (10m above ground level) $V_s [m/s]=$',  min_value=37.0, max_value=40., step=1., format="%.2f")
+	sigma_flm=st.sidebar.number_input("peak stress in the structure per unit $\sigma_{flm}[N/mm^2]=$",value= 600., min_value=0.0, step=10., format="%.2f")
+	sigma_c=st.sidebar.number_input(" reference stress $\sigma_{c}[N/mm^2]=$",value= 80., min_value=0.0, step=2., format="%.2f")
 
 		
 
@@ -180,7 +197,10 @@ if section_212:
 	st.markdown(f"**If these conditions are not satisfied the dynamic effects of turbulence response shall be considered in accordance with 3.3.**")
 	
 
+
+
 st.sidebar.markdown("---")	
+
 section_213 = st.sidebar.checkbox(options[2])
 if section_213:
 	st.subheader("2.1.3.1 General")
@@ -188,32 +208,39 @@ if section_213:
 	
 	st.subheader("2.1.3 Divergent amplitude response")
 	st.markdown(f"**2.1.3.2 Galloping and stall flutter**")
+	delta_s=st.sidebar.number_input("Structural damping expressed as logarithmic decrement $\delta_s=$", value=0.04, min_value=0.02,max_value=1.0, step=0.01, format="%.3f")
+	r=st.sidebar.number_input('Polar radius of gyration of the effective bridge cross section $r[m]=$', value=5.985, min_value=0.0, step=0.5, format="%.3f")
 	st.markdown("""
 	
 	**(a) Vertical motion**
 	
 	Vertical motion needs to be considered only for bridges of types 3, 3A, 4 and 4A as shown in Figure 1, and only if $b < 4d_4$.
 	
-	Provided the constraints (i) to (iii) in 2.3 are satisfied, $V_g$ shall be calculated from the reduced velocity, $V_{Rg},$ using the formula below:
+	Provided the constraints <a href="#constraints">(i)</a> to <a href="#constraints">(iii)</a> in 2.3 are satisfied, $V_g$ shall be calculated from the reduced velocity, $V_{Rg},$ using the formula below:
 		
 	""", unsafe_allow_html=True)  # Use unsafe_allow_html to render LaTeX
 # =============================================================================
-# 	latext = r'''
-# 	$$V_g=V_{Rg}f_Bd_4,$$
 # 	
-# 	where
-# 	
-# 	$$V_{Rg}=\frac{{C_g(m\delta_s)}}{{\rho d_4^2}}$$
-# 	'''
-# 	st.markdown(latext)
+# 	if st.checkbox('(i)-(iii)'):
+# 		st.write(AF.Geo_Constraints())
+# 		 
 # =============================================================================
+		
+	# Add the expandable content for constraints (i) - (iii)
+	with st.expander("Constraints (i) - (iii)"):
+		st.markdown(AF.Geo_Constraints())
+
+
+
 	
-	lt=AF.V_g_func_0(bridge_type="3",motion="Vertical")
+	lt=AF.V_g_Vertical_func(bridge_type="3")
 	st.latex(latex(lt))
 	st.write("where")	
 	
 	lt1=AF.V_Rg_func()
 	st.latex(latex(lt1))
+
+	
 	
 	st.write("$C_g$ is $2.0$ for bridges of type 3 and 4 with side overhang greater than $0.7d_4$ or $1.0$ for bridges of type 3, 3A, 4 and 4A with side overhang less than or equal to $0.7d_4$;")
 	
@@ -223,25 +250,43 @@ if section_213:
 			 Torsional motion shall be considered for all bridge types. Provided the fascia beams and parapets comply with the constraints given in 2.3, then $V_g$ shall be taken as:
 			 """)
 
-	#$V_g = 3.3 f_T b$ for bridge types 1, 1A, 2, 5 and 6;
-			 
-	# $V_g =5f_T b$ for bridge types3,3A,4 and 4A.
+
 	st.markdown(f"""
+			$V_g= 3.3 f_T b$ for bridge types 1, 1A, 2, 5 and 6;
+
+			$V_g= 5 f_T b$ for bridge types 3, 3A, 4 and 4A
+	
 			 For bridges of type 3, 3A, 4 and 4A (see Figure 1) having $b < 4d_4$, $V_g$ shall be taken as the lesser of $12f_T d_4$ or $5f_T b$
-			 """) 
+			 """)
 			 
 
+	motions=["Vertical", "Torsional"]
+	
+	motion=st.selectbox(f"Select the motion", options=motions)
+	
+	#v1=AF.V_Rg_func(C_g=AF.C_g_func(bridge_type, b=b, b_0=b_0, d_4=d_4), m=m, delta_s=delta_s, rho=rho, d_4=d_4).doit()
+
+	#st.write(v1)
 	V_g_0=latex(AF.V_g_func_0(bridge_type,motion))
 	st.latex(V_g_0)
 	
-	delta_s=st.sidebar.number_input("logarithmic decrement of damping $\delta_s=$", value=0.04, min_value=0.02,max_value=1.0, step=0.01, format="%.3f")
-	r=st.sidebar.number_input('polar radius $r=$', value=5.985, min_value=0.0, step=0.5, format="%.3f")
-	
 	
 	V_g=AF.round_equation(AF.V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s),2)
-	st.latex(latex(V_g))
+	
+	#V_g_val=AF.round_equation(AF.V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s).doit(),2)
+	
+	st.latex(latex(V_g)+f"(m/s)")
+	
+
+	
+	if V_g==False:
+		st.warning("In case of $V_g=NaN (or False)$, please check the condition in Vertical motion")
+		
+
+		
 
 	st.markdown(f"**2.1.3.3 Classical flutter**")
+	st.write("The critical wind speed for classical flutter, $V_f$, shall be calculated from the reduced critical wind speed:")
 	V_f=latex(AF.V_f_func())
 	st.latex(V_f)
 	st.write("Where")
@@ -254,12 +299,12 @@ if section_213:
 	st.latex(latex(V_Rf))
 	V_Rf_value=AF.V_Rf_func(f_B=f_B, f_T=f_T, m=m, r=r, rho=rho,b=b).doit().rhs
 	if V_Rf_value<2.5:
-		st.write("$V_{Rf}$ is not less than $2.5$. If $V_{Rf} \leq 2.5$ then the value  $2.5$ is taken")
+		st.write("$V_{Rf}$ is not less than $2.5$. In case of  $V_{Rf} \leq 2.5$ then the value  $2.5$ is taken")
 		V_Rf_value=2.5
 		V_f=latex(AF.V_f_func(V_Rf=V_Rf_value,f_T=f_T,b=b))
 		st.latex(V_f)
 		V_f=latex(AF.V_f_func(V_Rf=V_Rf_value,f_T=f_T,b=b).doit())
-		st.latex(V_f)
+		st.latex(V_f+f"(m/s)")
 		
 	else:
 		V_f=latex(AF.V_f_func(V_Rf=V_Rf_value,f_T=f_T,b=b))
@@ -273,9 +318,9 @@ if section_213:
 	st.write("The bridge shall be shown to be stable with respect to divergent amplitude response in wind storms up to wind speed $V_{WO}$, given by:")
 
 	
-	K_1A=st.sidebar.number_input("coefficient $K_{1A}=$",value=1.25, max_value=4.0, step=0.1, format="%.2f")
+	K_1A=st.sidebar.number_input("Probability coefficient $K_{1A}=$",value=1.25, max_value=4.0, step=0.1, format="%.2f")
 
-	V_d=st.sidebar.number_input('the maximum wind gust speed $V_d=$',min_value=V_r, value=50., step=1., format="%.2f")
+	V_d=st.sidebar.number_input('Maximum wind gust speed derived for the relevant maximum span $V_d [m/s]=$',min_value=V_r, value=50., step=1., format="%.2f")
 	
 	
 	V_WO=latex(AF.V_WO_func())
@@ -283,7 +328,7 @@ if section_213:
 	V_WO=latex(AF.V_WO_func(V_r=V_r, V_d=V_d, K_1A=K_1A))
 	st.latex(V_WO)
 	V_WO=AF.round_equation((AF.V_WO_func(V_r=V_r, V_d=V_d, K_1A=K_1A).doit()),2)
-	st.latex(latex(V_WO))
+	st.latex(latex(V_WO)+f"(m/s)")
 	
 	st.write("Where the values of $V_g$ or $V_f$ derived in accordance with 2.1.3.2 or 2.1.3.3 respectively are lower than $V_{WO}$ further studies as noted in 1.6 or wind-tunnel tests in accordance with 3.2 shall be undertaken.")
 
