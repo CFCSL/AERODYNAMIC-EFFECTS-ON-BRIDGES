@@ -117,8 +117,8 @@ if section_211:
 
 
 	f_options = {
-    f"$f_B={f_B}$": f_B,
-    f"$f_T={f_T}$": f_T}
+    f"$f=f_B={f_B}$": f_B,
+    f"$f=f_T={f_T}$": f_T}
 
 
 	f_B_selected=list(f_options.keys())[0]
