@@ -181,48 +181,54 @@ def P_T_func(b=b,rho=rho, m=m, V_s=V_s,f_B=f_B, sigma_flm=sigma_flm, sigma_c=sig
 
 
 
-#%%
-#### 2.1.3.2 Galloping and stall flutter
-
-# Define the symbols
-V_g= symbols('V_g')
-f= symbols('f')
-V_Rg=symbols('V_Rg')
-C_g=symbols('C_g')
-delta_s=symbols('delta_s')
-
 
 
 from sympy import Piecewise, Eq, symbols, Min
 
-V_g, V_Rg, f_B, f_T, b, d_4 , delta_s,rho,b_0 = symbols('V_g V_Rg f_B f_T b d_4 delta_s rho b_0')
+C_g,V_g, V_Rg, f_B, f_T, b, d_4 , delta_s,rho,b_0 = symbols('C_g V_g V_Rg f_B f_T b d_4 delta_s rho b_0')
 
+
+
+
+#%%
+
+
+def V_g_Vertical_func(bridge_type, motion="Vertical",V_Rg=V_Rg, f_B=f_B, d_4=d_4):
+	V_Rg=UnevaluatedExpr(V_Rg)
+	f_B=UnevaluatedExpr(f_B)
+	d_4=UnevaluatedExpr(d_4)
+	if bridge_type in ["3", "3A", "4", "4A"]:
+		val=V_Rg*f_B*d_4
+	else:
+		val= float('nan')
+	return Eq(V_g,val, evaluate= False)
 
 
 
 def V_Rg_func(C_g=C_g, m=m, delta_s=delta_s, rho=rho, d_4=d_4):
-    C_g = UnevaluatedExpr(C_g)
-    delta_s = UnevaluatedExpr(delta_s)
-    rho=UnevaluatedExpr(rho)
-    d_4 = UnevaluatedExpr(d_4)
-    result = N(C_g*(m*delta_s)/rho*d_4**2,7)
 
-    return result
+	C_g = UnevaluatedExpr(C_g)
+	delta_s = UnevaluatedExpr(delta_s)
+	rho=UnevaluatedExpr(rho)
+	d_4 = UnevaluatedExpr(d_4)
+	result=(C_g*m*delta_s)/(rho*d_4**2)
+
+	return  result# Eq(V_Rg, result, evaluate=False)
 
 
 
 def C_g_func(bridge_type, b=b, b_0=b_0, d_4=d_4):
-    overhang = (b - b_0) / 2
-    b_0 = UnevaluatedExpr(b_0)
-    b = UnevaluatedExpr(b)
-    d_4 = UnevaluatedExpr(d_4)
-    val = Piecewise((2.0, (bridge_type in ["3", "4"]) & (overhang >= 0.7 * d_4)),
-                   (1.0, (bridge_type in ["3", "3A", "4", "4A"]) & (overhang < 0.7 * d_4)),
-                   (float('nan'), True))
-    return val#Eq(C_g, val, evaluate=False)
+	b=float(b)
+	b_0=float(b)
+	overhang = (b - b_0) / 2
+	if bridge_type in ["3", "4"] and overhang >= 0.7 * d_4:
+		val=2.0
+	if bridge_type in ["3", "3A", "4", "4A"] and overhang < 0.7 * d_4:
+		val=1.0
+	return  val#Eq(C_g, val, evaluate=False)
 
 
-
+#%%
 
 def V_g_func_0(bridge_type,motion, V_Rg=V_Rg, f_B=f_B, f_T=f_T,b=b, d_4=d_4):
     
@@ -236,8 +242,6 @@ def V_g_func_0(bridge_type,motion, V_Rg=V_Rg, f_B=f_B, f_T=f_T,b=b, d_4=d_4):
             val=3.3*f_T
         if motion=="Vertical":
             val=float("nan")
-            
-
     else:
         if motion=="Vertical":
             
@@ -268,21 +272,11 @@ def V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, 
     if bridge_type in ["3", "3A", "4", "4A"]:
         if motion == "Vertical":
             C_g=C_g_func(bridge_type, b=b, b_0=b_0, d_4=d_4)
-            V_Rg=V_Rg_func(C_g=C_g, m=m, delta_s=delta_s, rho=rho, d_4=d_4)
+      
+            V_Rg=V_Rg_func(C_g=C_g, m=m, delta_s=delta_s, rho=rho, d_4=d_4).doit()
             val=V_Rg * f_B * d_4
-#        
-            overhang = (b - b_0) / 2
-            val1 = 2.0
-            val2 = 1.0
-            cond1 = (bridge_type in ["3", "4"]) & (overhang >= 0.7 * d_4)
-            cond2 = (overhang < 0.7 * d_4)
-            C_g = Piecewise((val1, cond1), (val2, cond2), (float('nan'), True))
-            
-            if C_g is not None:
-                V_Rg = C_g * (m * delta_s) / rho * d_4**2
-                val = V_Rg * f_B * d_4
-            else:
-                val = float('nan')
+
+
         if motion == "Torsional":
             val3 = Min(5.5 * f_T * b, 12 * f_T * d_4)
             val4 = 5.5 * f_T * b
@@ -293,6 +287,7 @@ def V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, 
             val = Piecewise((val3, cond3), (val4, cond4))
 
     return Eq(V_g, val, evaluate=False)
+
 
 
 #%%

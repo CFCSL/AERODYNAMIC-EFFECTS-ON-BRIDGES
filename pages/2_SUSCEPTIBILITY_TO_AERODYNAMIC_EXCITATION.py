@@ -208,6 +208,8 @@ if section_213:
 	
 	st.subheader("2.1.3 Divergent amplitude response")
 	st.markdown(f"**2.1.3.2 Galloping and stall flutter**")
+	delta_s=st.sidebar.number_input("Structural damping expressed as logarithmic decrement $\delta_s=$", value=0.04, min_value=0.02,max_value=1.0, step=0.01, format="%.3f")
+	r=st.sidebar.number_input('Polar radius of gyration of the effective bridge cross section $r[m]=$', value=5.985, min_value=0.0, step=0.5, format="%.3f")
 	st.markdown("""
 	
 	**(a) Vertical motion**
@@ -231,12 +233,14 @@ if section_213:
 
 
 	
-	lt=AF.V_g_func_0(bridge_type="3",motion="Vertical")
+	lt=AF.V_g_Vertical_func(bridge_type="3")
 	st.latex(latex(lt))
 	st.write("where")	
 	
 	lt1=AF.V_Rg_func()
 	st.latex(latex(lt1))
+
+	
 	
 	st.write("$C_g$ is $2.0$ for bridges of type 3 and 4 with side overhang greater than $0.7d_4$ or $1.0$ for bridges of type 3, 3A, 4 and 4A with side overhang less than or equal to $0.7d_4$;")
 	
@@ -259,22 +263,27 @@ if section_213:
 	motions=["Vertical", "Torsional"]
 	
 	motion=st.selectbox(f"Select the motion", options=motions)
+	
+	#v1=AF.V_Rg_func(C_g=AF.C_g_func(bridge_type, b=b, b_0=b_0, d_4=d_4), m=m, delta_s=delta_s, rho=rho, d_4=d_4).doit()
 
-
+	#st.write(v1)
 	V_g_0=latex(AF.V_g_func_0(bridge_type,motion))
 	st.latex(V_g_0)
 	
-	delta_s=st.sidebar.number_input("Structural damping expressed as logarithmic decrement $\delta_s=$", value=0.04, min_value=0.02,max_value=1.0, step=0.01, format="%.3f")
-	r=st.sidebar.number_input('Polar radius of gyration of the effective bridge cross section $r[m]=$', value=5.985, min_value=0.0, step=0.5, format="%.3f")
-	
 	
 	V_g=AF.round_equation(AF.V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s),2)
+	
+	#V_g_val=AF.round_equation(AF.V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s).doit(),2)
+	
 	st.latex(latex(V_g)+f"(m/s)")
 	
-	V_g_value=AF.V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s).doit()
+
 	
-	if V_g_value==False:
-		st.warning("If $V_g=NaN (or False)$, please check the condition 'Vertical motion needs to be considered only for bridges of types 3, 3A, 4 and 4A, and only if $b<4d_4$'")
+	if V_g==False:
+		st.warning("If $V_g=NaN (or False)$, please check the condition in Vertical motion")
+		
+
+		
 
 	st.markdown(f"**2.1.3.3 Classical flutter**")
 	st.write("The critical wind speed for classical flutter, $V_f$, shall be calculated from the reduced critical wind speed:")
