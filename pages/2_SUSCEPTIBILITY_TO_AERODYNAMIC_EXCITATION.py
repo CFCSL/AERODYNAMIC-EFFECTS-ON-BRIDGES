@@ -239,6 +239,19 @@ if section_213:
 	
 	lt1=AF.V_Rg_func()
 	st.latex(latex(lt1))
+	
+	if bridge_type in ["3", "3A", "4", "4A", "5", "6"]:
+		#st.write(v1)
+		V_g_0=latex(AF.V_g_func_0(bridge_type,motion="Vertical"))
+		st.latex(V_g_0)
+		
+		V_g=AF.round_equation(AF.V_g_func(bridge_type, motion="Vertical", b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s),2)
+		
+		#V_g_val=AF.round_equation(AF.V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s).doit(),2)
+		
+		st.latex(latex(V_g)+f"(m/s)")
+	else :
+		st.warning("Not applicable")
 
 	
 	
@@ -260,27 +273,34 @@ if section_213:
 			 """)
 			 
 
-	motions=["Vertical", "Torsional"]
-	
-	motion=st.selectbox(f"Select the motion", options=motions)
+# =============================================================================
+# 	motions=["Vertical", "Torsional"]
+# 	
+# 	motion=st.selectbox(f"Select the motion", options=motions)
+# =============================================================================
 	
 	#v1=AF.V_Rg_func(C_g=AF.C_g_func(bridge_type, b=b, b_0=b_0, d_4=d_4), m=m, delta_s=delta_s, rho=rho, d_4=d_4).doit()
 
 	#st.write(v1)
-	V_g_0=latex(AF.V_g_func_0(bridge_type,motion))
+	#V_g_0=latex(AF.V_g_func_0(bridge_type,motion))
+	#st.latex(V_g_0)
+	
+
+	V_g_0=latex(AF.V_g_func_0(bridge_type,motion="Torsional"))
 	st.latex(V_g_0)
 	
-	
-	V_g=AF.round_equation(AF.V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s),2)
+	V_g=AF.round_equation(AF.V_g_func(bridge_type, motion="Torsional", b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s),2)
 	
 	#V_g_val=AF.round_equation(AF.V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s).doit(),2)
 	
 	st.latex(latex(V_g)+f"(m/s)")
+
+			
 	
 
 	
-	if V_g==False:
-		st.warning("In case of $V_g=NaN (or False)$, please check the condition in Vertical motion")
+	#if V_g==False:
+	#	st.warning("In case of $V_g=NaN (or False)$, please check the condition in Vertical motion")
 		
 
 		
