@@ -94,7 +94,7 @@ options=[f"**{options[0]}**",f"**{options[1]}**",f"**{options[2]}**"]
 st.sidebar.markdown("---")
 
 
-
+st.markdown("---")
 section_211 = st.sidebar.checkbox(options[0])
 
 if section_211:
@@ -117,12 +117,12 @@ if section_211:
 
 
 	f_options = {
-    f"$f_B={f_B}$": f_B,
-    f"$f_T={f_T}$": f_T}
+    f"When $f=f_B={f_B}$,": f_B,
+    f"When $f=f_T={f_T}$,": f_T}
 
 
-	f_B_selected=st.checkbox(list(f_options.keys())[0])
-	
+	f_B_selected=list(f_options.keys())[0]
+	st.write(f_B_selected)
 	
 	if f_B_selected:
 		f = f_B
@@ -130,7 +130,8 @@ if section_211:
 		st.latex(latex(V_cr)+f'(m/s)')
 		V_cr_B = AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit().rhs
 		
-	f_T_selected=st.checkbox(list(f_options.keys())[1])
+	f_T_selected=list(f_options.keys())[1]
+	st.write(f"{f_T_selected}")
 	if f_T_selected:
 		f = f_T
 		V_cr = AF.V_cr_func(bridge_type=bridge_type, b_0=b_0, d_4=d_4, f=f).doit()
@@ -168,6 +169,8 @@ if section_211:
 	st.markdown(f"**If any one of (a), (b) or (c) is satisfied, then the bridge shall be deemed stable with respect to the effects of vortex excitation. If none of these conditions is satisfied, then the effects of vortex excitation shall be considered in accordance with 3.1.**")
 	
 st.sidebar.markdown("---")	
+
+st.markdown("---")
 section_212 = st.sidebar.checkbox(options[1])
 
 if section_212:
@@ -200,6 +203,8 @@ if section_212:
 
 
 st.sidebar.markdown("---")	
+
+st.markdown("---")
 
 section_213 = st.sidebar.checkbox(options[2])
 if section_213:
@@ -239,6 +244,19 @@ if section_213:
 	
 	lt1=AF.V_Rg_func()
 	st.latex(latex(lt1))
+	
+	if bridge_type in ["3", "3A", "4", "4A", "5", "6"]:
+		#st.write(v1)
+		#V_g_0=latex(AF.V_g_func_0(bridge_type,motion="Vertical"))
+		#st.latex(V_g_0)
+		
+		V_g=AF.round_equation(AF.V_g_func(bridge_type, motion="Vertical", b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s),2)
+		
+		#V_g_val=AF.round_equation(AF.V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s).doit(),2)
+		
+		st.latex(latex(V_g)+f"(m/s)")
+	else :
+		st.warning("Not applicable. Vertical motion need be considered only for bridges of types 3, 3A, 4 and 4A, and only if $b < 4d_4$.")
 
 	
 	
@@ -260,27 +278,34 @@ if section_213:
 			 """)
 			 
 
-	motions=["Vertical", "Torsional"]
-	
-	motion=st.selectbox(f"Select the motion", options=motions)
+# =============================================================================
+# 	motions=["Vertical", "Torsional"]
+# 	
+# 	motion=st.selectbox(f"Select the motion", options=motions)
+# =============================================================================
 	
 	#v1=AF.V_Rg_func(C_g=AF.C_g_func(bridge_type, b=b, b_0=b_0, d_4=d_4), m=m, delta_s=delta_s, rho=rho, d_4=d_4).doit()
 
 	#st.write(v1)
-	V_g_0=latex(AF.V_g_func_0(bridge_type,motion))
+	#V_g_0=latex(AF.V_g_func_0(bridge_type,motion))
+	#st.latex(V_g_0)
+	
+
+	V_g_0=latex(AF.V_g_func_0(bridge_type,motion="Torsional"))
 	st.latex(V_g_0)
 	
-	
-	V_g=AF.round_equation(AF.V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s),2)
+	V_g=AF.round_equation(AF.V_g_func(bridge_type, motion="Torsional", b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s),2)
 	
 	#V_g_val=AF.round_equation(AF.V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s).doit(),2)
 	
 	st.latex(latex(V_g)+f"(m/s)")
+
+			
 	
 
 	
-	if V_g==False:
-		st.warning("In case of $V_g=NaN (or False)$, please check the condition in Vertical motion")
+	#if V_g==False:
+	#	st.warning("In case of $V_g=NaN (or False)$, please check the condition in Vertical motion")
 		
 
 		

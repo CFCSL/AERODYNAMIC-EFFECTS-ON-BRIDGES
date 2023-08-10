@@ -11,6 +11,7 @@ from sympy import N
 init_printing()
 from sympy import Piecewise, nan
 import numpy as np
+import streamlit as st
 
 
 
@@ -24,6 +25,60 @@ def round_equation(eq, num_digits=3):
     rhs = eq.rhs
     rounded_rhs = round_expr(rhs, num_digits)
     return Eq(lhs, rounded_rhs)
+
+
+
+
+def Geo_Constraints():
+	text="""
+		2.3 Geometric constraints
+	
+		For applicability of the reduced velocities for
+		divergent amplitude response (2.1.3.2) and the
+		vortex shedding maximum amplitude derivation
+		(3.1), the following constraints shall be satisfied:
+			
+		(i)  Solid edge members, such as fascia beams
+		and solid parapets shall have a total depth
+		less than $0.2d_4$ unless positioned closer than
+		$0.5d_4$ from the outer girder when they shall
+		not protrude above the deck by more than
+		$0.2d_4$ nor below the deck by more than
+		$0.5d_4$. In defining such edge members, edge
+		stiffening of the slab to a depth of $0.5$ times
+		the slab thickness may be ignored.
+		
+		(ii)  Other edge members such as parapets,
+		barriers, etc., shall have a height above deck
+		level, $h$, and a solidity ratio, $\phi$, such that $\phi$ is
+		less than $0.5$ and the product $h\phi$ is less than
+		$0.35d_4$ for the effective edge member. The
+		value of $\phi$ may exceed $0.5$ over short
+		lengths of parapet, provided that the total
+		length projected onto the bridge centre-line
+		of both the upwind and downwind portions
+		of parapet whose solidity ratio exceeds $0.5$
+		does not exceed 30% of the bridge span.
+		
+		(iii)  Any central median barrier shall have a
+		shadow area in elevation per metre length
+		less than $0.5m^2$. Kerbs or upstands greater
+		than $100mm$ deep shall be considered as
+		part of this constraint by treating as a solid
+		bluff depth; where less than $100mm$ the
+		depth shall be neglected, see Figure 2.
+		
+		In the above, $d_4$ is the reference depth of the bridge
+		deck (see Figures 1 and 2). Where the depth is
+		variable over the span, $d_4$ shall be taken as the
+		average value over the middle third of the longest
+		span.
+			"""
+	return text
+	
+	
+
+
 
 
 #%%
@@ -126,48 +181,54 @@ def P_T_func(b=b,rho=rho, m=m, V_s=V_s,f_B=f_B, sigma_flm=sigma_flm, sigma_c=sig
 
 
 
-#%%
-#### 2.1.3.2 Galloping and stall flutter
-
-# Define the symbols
-V_g= symbols('V_g')
-f= symbols('f')
-V_Rg=symbols('V_Rg')
-C_g=symbols('C_g')
-delta_s=symbols('delta_s')
-
 
 
 from sympy import Piecewise, Eq, symbols, Min
 
-V_g, V_Rg, f_B, f_T, b, d_4 , delta_s,rho,b_0 = symbols('V_g V_Rg f_B f_T b d_4 delta_s rho b_0')
+C_g,V_g, V_Rg, f_B, f_T, b, d_4 , delta_s,rho,b_0 = symbols('C_g V_g V_Rg f_B f_T b d_4 delta_s rho b_0')
 
+
+
+
+#%%
+
+
+def V_g_Vertical_func(bridge_type, motion="Vertical",V_Rg=V_Rg, f_B=f_B, d_4=d_4):
+	V_Rg=UnevaluatedExpr(V_Rg)
+	f_B=UnevaluatedExpr(f_B)
+	d_4=UnevaluatedExpr(d_4)
+	if bridge_type in ["3", "3A", "4", "4A"]:
+		val=V_Rg*f_B*d_4
+	else:
+		val= float('nan')
+	return Eq(V_g,val, evaluate= False)
 
 
 
 def V_Rg_func(C_g=C_g, m=m, delta_s=delta_s, rho=rho, d_4=d_4):
-    C_g = UnevaluatedExpr(C_g)
-    delta_s = UnevaluatedExpr(delta_s)
-    rho=UnevaluatedExpr(rho)
-    d_4 = UnevaluatedExpr(d_4)
-    result = N(C_g*(m*delta_s)/rho*d_4**2,7)
 
-    return result
+	C_g = UnevaluatedExpr(C_g)
+	delta_s = UnevaluatedExpr(delta_s)
+	rho=UnevaluatedExpr(rho)
+	d_4 = UnevaluatedExpr(d_4)
+	result=(C_g*m*delta_s)/(rho*d_4**2)
+
+	return  Eq(V_Rg, result, evaluate=False)
 
 
 
 def C_g_func(bridge_type, b=b, b_0=b_0, d_4=d_4):
-    overhang = (b - b_0) / 2
-    b_0 = UnevaluatedExpr(b_0)
-    b = UnevaluatedExpr(b)
-    d_4 = UnevaluatedExpr(d_4)
-    val = Piecewise((2.0, (bridge_type in ["3", "4"]) & (overhang >= 0.7 * d_4)),
-                   (1.0, (bridge_type in ["3", "3A", "4", "4A"]) & (overhang < 0.7 * d_4)),
-                   (float('nan'), True))
-    return val#Eq(C_g, val, evaluate=False)
+	b=float(b)
+	b_0=float(b)
+	overhang = (b - b_0) / 2
+	if bridge_type in ["3", "4"] and overhang >= 0.7 * d_4:
+		val=2.0
+	if bridge_type in ["3", "3A", "4", "4A"] and overhang < 0.7 * d_4:
+		val=1.0
+	return  val#Eq(C_g, val, evaluate=False)
 
 
-
+#%%
 
 def V_g_func_0(bridge_type,motion, V_Rg=V_Rg, f_B=f_B, f_T=f_T,b=b, d_4=d_4):
     
@@ -198,14 +259,7 @@ def V_g_func_0(bridge_type,motion, V_Rg=V_Rg, f_B=f_B, f_T=f_T,b=b, d_4=d_4):
 
 #%%
 def V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, f_T=f_T, delta_s=delta_s):
-   # b=UnevaluatedExpr(b)
-    #b_0=UnevaluatedExpr(b_0)
-   # m=UnevaluatedExpr(m)
-   # rho=UnevaluatedExpr(rho)
-   # d_4=UnevaluatedExpr(d_4)
-    #f_B=UnevaluatedExpr(f_B)
-   # f_T=UnevaluatedExpr(f_T)
-   # delta_s=UnevaluatedExpr(delta_s)
+
 
     b = float(b)
     b_0 = float(b_0)
@@ -218,23 +272,12 @@ def V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, 
     if bridge_type in ["3", "3A", "4", "4A"]:
         if motion == "Vertical":
             C_g=C_g_func(bridge_type, b=b, b_0=b_0, d_4=d_4)
-            V_Rg=V_Rg_func(C_g=C_g, m=m, delta_s=delta_s, rho=rho, d_4=d_4)
+      
+            V_Rg=V_Rg_func(C_g=C_g, m=m, delta_s=delta_s, rho=rho, d_4=d_4).doit().rhs
             val=V_Rg * f_B * d_4
 
+
         if motion == "Torsional":
-            overhang = (b - b_0) / 2
-            val1 = 2.0
-            val2 = 1.0
-            cond1 = (bridge_type in ["3", "4"]) & (overhang >= 0.7 * d_4)
-            cond2 = (overhang < 0.7 * d_4)
-            C_g = Piecewise((val1, cond1), (val2, cond2), (float('nan'), True))
-            
-            if C_g is not None:
-                V_Rg = C_g * (m * delta_s) / rho * d_4**2
-                val = V_Rg * f_B * d_4
-            else:
-                val = float('nan')
-        else:
             val3 = Min(5.5 * f_T * b, 12 * f_T * d_4)
             val4 = 5.5 * f_T * b
             
@@ -244,6 +287,7 @@ def V_g_func(bridge_type, motion, b=b, b_0=b_0, m=m, rho=rho, d_4=d_4, f_B=f_B, 
             val = Piecewise((val3, cond3), (val4, cond4))
 
     return Eq(V_g, val, evaluate=False)
+
 
 
 #%%
