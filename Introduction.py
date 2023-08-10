@@ -23,11 +23,11 @@ This Standard specifies design requirements for bridges regarding aerodynamic ef
 
 """)
 
-st.markdown("[Click here to see PDF document](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/bd4901.pdf)")
+st.markdown("[DESIGN RULES FOR AERODYNAMIC EFFECTS ON BRIDGES](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/bd4901.pdf)")
 
 st.markdown("Files in Jupyter Notebook and Python  are available in GitHub:")
-st.markdown("[Jupyter Notebook](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/Aerodynamic_Excitation-Copy1.ipynb)")
-st.markdown("[Python](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/Aerodynamic_Excitation.py)")
+st.markdown("[Calculation notebook](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/Aerodynamic_Excitation-Copy1.ipynb)")
+st.markdown("[Aerodynamic effect Python package](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/Aerodynamic_Excitation.py)")
 
 
 
@@ -35,5 +35,5 @@ st.markdown("""
 ---
 - The program developed by: 		Pedram Manouchehri & Nam Nguyen 
 - User interface developed by:	Nam Nguyen 
-- Independently checked by:		
+- Independently checked by:		Gonzalo Marinas Sanz
 """)

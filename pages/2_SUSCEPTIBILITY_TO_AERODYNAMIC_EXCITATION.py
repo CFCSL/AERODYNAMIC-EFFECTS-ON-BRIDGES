@@ -94,7 +94,7 @@ options=[f"**{options[0]}**",f"**{options[1]}**",f"**{options[2]}**"]
 st.sidebar.markdown("---")
 
 
-
+st.markdown("---")
 section_211 = st.sidebar.checkbox(options[0])
 
 if section_211:
@@ -117,8 +117,8 @@ if section_211:
 
 
 	f_options = {
-    f"$f=f_B={f_B}$": f_B,
-    f"$f=f_T={f_T}$": f_T}
+    f"When $f=f_B={f_B}$,": f_B,
+    f"When $f=f_T={f_T}$,": f_T}
 
 
 	f_B_selected=list(f_options.keys())[0]
@@ -169,6 +169,8 @@ if section_211:
 	st.markdown(f"**If any one of (a), (b) or (c) is satisfied, then the bridge shall be deemed stable with respect to the effects of vortex excitation. If none of these conditions is satisfied, then the effects of vortex excitation shall be considered in accordance with 3.1.**")
 	
 st.sidebar.markdown("---")	
+
+st.markdown("---")
 section_212 = st.sidebar.checkbox(options[1])
 
 if section_212:
@@ -201,6 +203,8 @@ if section_212:
 
 
 st.sidebar.markdown("---")	
+
+st.markdown("---")
 
 section_213 = st.sidebar.checkbox(options[2])
 if section_213:
@@ -252,7 +256,7 @@ if section_213:
 		
 		st.latex(latex(V_g)+f"(m/s)")
 	else :
-		st.warning("Not applicable")
+		st.warning("Not applicable. Vertical motion need be considered only for bridges of types 3, 3A, 4 and 4A, and only if $b < 4d_4$.")
 
 	
 	
