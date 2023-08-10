@@ -88,7 +88,7 @@ r=st.sidebar.number_input('Polar radius of gyration of the effective bridge cros
 
 motions=["Vertical", "Torsional"]
 # 
-motion=st.selectbox("motion", options=motions)
+motion=st.radio("Motion", options=motions)
 result =AF.y_max_func(bridge_type=bridge_type, motion=motion)
 
 if isinstance(result, str):
