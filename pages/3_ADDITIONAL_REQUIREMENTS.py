@@ -173,7 +173,7 @@ if f_B_selected:
 
 
 f_T_selected=list(f_options.keys())[1]
-st.write(f_B_selected)
+st.write(f_T_selected)
 
 
 if f_T_selected:
