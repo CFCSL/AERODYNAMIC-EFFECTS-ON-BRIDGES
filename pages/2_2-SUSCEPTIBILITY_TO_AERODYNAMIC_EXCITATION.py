@@ -27,7 +27,7 @@ bridge_types = ["1", "1A", "2", "3", "3A", "4", "4A", "5", "6"]
 bridge_type=st.sidebar.selectbox("Bridge type", options=bridge_types)
 
 
-rho=st.sidebar.number_input('Density of  air $\\rho [kg/m^3]$ =', value= 1.226, min_value=0.0, step=0.01, format="%.3f")
+rho=st.sidebar.number_input('Density of  air $\\rho [kg/m^3]$ =', value= 1.225, min_value=0.0, step=0.01, format="%.3f")
 
 b=st.sidebar.number_input("Overall width of the bridge deck $b [m] = $",value= 12.6, min_value=0.0, step=0.2, format="%.2f")
 
