@@ -69,6 +69,21 @@ f_T=st.sidebar.number_input("Natural frequency in torsion $f_T [Hz]=$", value=1.
 
 st.header("3.1 Vortex excitation effects")
 
+st.write("If the bridge is found to be susceptible to aerodynamic excitation in accordance with the criteria in 2.1, then the following additional requirements shall be considered (see also 4).")
+
+st.subheader("3.1 Vortex excitation effects") 
+st.markdown(f"**3.1.1 General**")
+
+st.markdown(f"""
+Where the bridge cannot be assumed to be aerodynamically stable against vortex excitation in accordance with 2.1.1 above, consideration shall be given to:
+
+(i) the effects of maximum oscillations of any one of the motions considered singly, calculated in accordance with 3.1.2 together with the effects of other coincident loading (see 4);
+
+(ii) fatigue damage, assessed in accordance with 5 summated with damage from other loading.
+
+""")
+
+
 
 # =============================================================================
 # section_312=st.sidebar.checkbox(f"**3.1.2 Amplitudes**")
@@ -193,6 +208,5 @@ if motion=="Torsional" and f_T_selected:
 	
 	except:
 		st.markdown(f"y_max value is not defined for **bridge types 2, 5 and 6**")
-
 
 
