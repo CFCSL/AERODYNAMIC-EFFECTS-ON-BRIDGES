@@ -403,7 +403,7 @@ def y_max_func(bridge_type, motion, c=c, b=b, d_4=d_4, rho=rho, m=m, delta_s=del
 
 K_D=symbols('K_D')
 
-def K_D_func(y_max=y_max, f=f):
+def K_D_func(motion,y_max=y_max, f=f):
 	y_max=UnevaluatedExpr(y_max)
 	f=UnevaluatedExpr(f)
 	val=y_max*f**2
