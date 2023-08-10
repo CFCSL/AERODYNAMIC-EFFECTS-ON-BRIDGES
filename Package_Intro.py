@@ -18,7 +18,7 @@ import Aerodynamic_Excitation as AF
 st.header(" DESIGN RULES FOR AERODYNAMIC EFFECTS ON BRIDGES")
 
 st.markdown("""The calculation notebook, founded upon the British Standard (DESIGN MANUAL FOR ROADS AND BRIDGES - BD 49/01), serves the purpose of evaluating the aerodynamic impact on bridges and determining the bridge's vulnerability to wind-induced vibrations.
-The provided Python package, coupled with the subsequent Streamlit and Jupyter notebook calculation resources, has been devised to simplify the calculation procedure. :red[Nonetheless, it is important to acknowledge that this package may solely address specific sections of the document. It is strongly recommended to consistently consult the original referenced document and critically assess the calculations presented by means of this package.]")
+The provided Python package, coupled with the subsequent Streamlit and Jupyter notebook calculation resources, has been devised to simplify the calculation procedure. :red[Nonetheless, it is important to acknowledge that this package may solely address specific sections of the document. It is strongly recommended to consistently consult the original referenced document and critically assess the calculations presented by means of this package.]""")
 
 st.markdown("""
 the package is based on :
