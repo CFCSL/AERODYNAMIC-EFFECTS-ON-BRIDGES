@@ -75,7 +75,7 @@ st.header("3.1 Vortex excitation effects")
 # if section_312:
 # =============================================================================
 st.subheader("3.1.2 Amplitudes")
-st.write("The maximum amplitudes of flexural and torsional vibrations, $y_{max}$, shall be obtained for each mode of vibration for each corresponding critical wind speed less than Vr as defined in 2.1.1.3(b). The formulae below provide an approximate value to the amplitudes. However if the consequences of such values in the design are significant then wind tunnel tests shall be considered.")
+st.write("The maximum amplitudes of flexural and torsional vibrations, $y_{max}$, shall be obtained for each mode of vibration for each corresponding critical wind speed less than $V_r$ as defined in 2.1.1.3(b). The formulae below provide an approximate value to the amplitudes. However if the consequences of such values in the design are significant then wind tunnel tests shall be considered.")
 
 k=st.sidebar.number_input("The depth of fascia beam or edge slab $k[m]=$",value =1.0,min_value=0.0, step=0.1, format="%.2f")
 h=st.sidebar.number_input("Height of bridge parapet or edge member above deck level $h[m]=$",value =5.0,min_value=0.0, step=0.5, format="%.2f")
@@ -101,7 +101,8 @@ else:
     text_message,equation  = result
     st.markdown(f"**{text_message}**")
     st.latex(latex(equation))
-	
+
+st.write("$c$ is amplitude correction factor")	
 
 result =AF.y_max_func(bridge_type=bridge_type, motion=motion, c=AF.c_func())
 
@@ -155,7 +156,8 @@ try:
 	K_D=AF.K_D_func(y_max=y_max_val, f=selected_f_value)
 	
 	st.latex(latex(K_D))
-	st.latex(latex(AF.round_equation(K_D.doit())))
+	st.latex(latex(AF.round_equation(K_D.doit()))+f"(m/s^2)")
+	#st.latex(f"K_D = {K_D:.2f} (m/s^2)")
 
 except:
 	st.markdown(f"y_max value is not defined for **bridge types 2, 5 and 6**")
