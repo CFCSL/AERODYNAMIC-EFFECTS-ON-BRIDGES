@@ -30,7 +30,8 @@ st.markdown("Files in Jupyter Notebook and Python  are available in GitHub:")
 st.markdown("[Calculation notebook (Jupyter Notebook) ](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/Aerodynamic_Excitation-Copy1.ipynb)")
 st.markdown("[Aerodynamic effect Python package](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/Aerodynamic_Excitation.py)")
 
-st.markdown(""" :red[The provided Python package, along with the subsequent Streamlit and Jupyter notebook calculation sheets, has been developed to enhance the efficiency of the calculation process.
+st.markdown("""---
+:red[The provided Python package, along with the subsequent Streamlit and Jupyter Notebook calculation sheets, has been developed to enhance the efficiency of the calculation process.
 However, it should be noted that this package may only address certain sections of the document. It is advised to consistently consult the original referenced document and critically evaluate the calculations presented through this package.]""")
 
 st.markdown("""
