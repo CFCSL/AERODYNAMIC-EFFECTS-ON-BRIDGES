@@ -20,7 +20,7 @@ st.sidebar.header("Global parameters")
 
 bridge_types = ["1", "1A", "2", "3", "3A", "4", "4A", "5", "6"]
 
-bridge_type=st.sidebar.selectbox("bridge_type", options=bridge_types)
+bridge_type=st.sidebar.selectbox("Bridge type", options=bridge_types)
 
 rho=st.sidebar.number_input('Density of  air $\\rho [kg/m^3]$ =', value= 1.226, min_value=0.0, step=0.01, format="%.3f")
 
@@ -126,7 +126,7 @@ else:
     text_message,equation  = result
    # st.markdown(f"**{text_message}**")
     st.latex(latex(AF.round_equation(equation)))
-    st.latex(latex(AF.round_equation(equation.doit())))
+    st.latex(latex(AF.round_equation(equation.doit()))+f"(m)")
     y_max_val=round(equation.doit().rhs,3)
 
 #%%	
