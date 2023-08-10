@@ -22,7 +22,7 @@ The provided Python package, coupled with the subsequent Streamlit and Jupyter n
 
 st.markdown("""
 the package is based on :
-[DESIGN RULES FOR AERODYNAMIC EFFECTS ON BRIDGES (BD 49/01)](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/bd4901.pdf)""")
+['DESIGN RULES FOR AERODYNAMIC EFFECTS ON BRIDGES (BD 49/01)'](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/bd4901.pdf)""")
 
 st.markdown("""---
 :bold[you can access the following to run your calculation in a more relaxed format by directly running the package locally]""")
