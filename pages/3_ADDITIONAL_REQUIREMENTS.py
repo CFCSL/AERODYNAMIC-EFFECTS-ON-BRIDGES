@@ -145,24 +145,49 @@ K_D=AF.K_D_func()
 st.latex(latex(K_D))
 
 # Initialize the options dictionary
-f_options = {"f_B": f_B, "f_T": f_T}
+#f_options = {f"$f=f_B={f_B}$": f_B, f"$f=f_T={f_T}$": f_T}
+f_options = {
+   f"When $f =f_B={f_B}$": f_B,
+   f"When $ f=f_T={f_T}$": f_T}
 
 
-selected_f_key = st.radio("f=", options=list(f_options.keys()))
-selected_f_value = f_options[selected_f_key]
+#selected_f_key = st.radio( " ",options=list(f_options.keys()))
+#selected_f_value = f_options[selected_f_key]
+
+f_B_selected=list(f_options.keys())[0]
+st.write(f_B_selected)
 
 
-try:
-	K_D=AF.K_D_func(y_max=y_max_val, f=selected_f_value)
+if f_B_selected:
+	f = f_B
+
+	try:
+		K_D=AF.K_D_func(y_max=y_max_val, f=f)
+		
+		st.latex(latex(K_D))
+		st.latex(latex(AF.round_equation(K_D.doit()))+f"(m/s^2)")
+		#st.latex(f"K_D = {K_D:.2f} (m/s^2)")
 	
-	st.latex(latex(K_D))
-	st.latex(latex(AF.round_equation(K_D.doit()))+f"(m/s^2)")
-	#st.latex(f"K_D = {K_D:.2f} (m/s^2)")
+	except:
+		st.markdown(f"y_max value is not defined for **bridge types 2, 5 and 6**")
 
-except:
-	st.markdown(f"y_max value is not defined for **bridge types 2, 5 and 6**")
 
-#
+f_T_selected=list(f_options.keys())[1]
+st.write(f_B_selected)
+
+
+if f_T_selected:
+	f = f_T
+
+	try:
+		K_D=AF.K_D_func(y_max=y_max_val, f=f)
+		
+		st.latex(latex(K_D))
+		st.latex(latex(AF.round_equation(K_D.doit()))+f"(m/s^2)")
+		#st.latex(f"K_D = {K_D:.2f} (m/s^2)")
+	
+	except:
+		st.markdown(f"y_max value is not defined for **bridge types 2, 5 and 6**")
 
 
 
