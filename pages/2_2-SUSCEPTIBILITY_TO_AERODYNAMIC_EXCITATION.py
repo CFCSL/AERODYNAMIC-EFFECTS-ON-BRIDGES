@@ -208,10 +208,11 @@ st.markdown("---")
 
 section_213 = st.sidebar.checkbox(options[2])
 if section_213:
-	st.subheader("2.1.3.1 General")
+	st.subheader("2.1.3 Divergent amplitude response")
+	st.markdown(f"**2.1.3.1 General**")
 	st.write("Estimates of the critical wind speed for galloping and stall flutter for both bending and torsional motion ($V_g$) and for classical flutter ($V_f$) shall be derived according to 2.1.3.2 and 2.1.3.3 respectively. Alternatively values of $V_g$ and $V_f$ may be determined by wind tunnel tests (see 6). The limiting criteria given in 2.1.3.4 shall then be satisfied.")
 	
-	st.subheader("2.1.3 Divergent amplitude response")
+	
 	st.markdown(f"**2.1.3.2 Galloping and stall flutter**")
 	delta_s=st.sidebar.number_input("Structural damping expressed as logarithmic decrement $\delta_s=$", value=0.04, min_value=0.02,max_value=1.0, step=0.01, format="%.3f")
 	r=st.sidebar.number_input('Polar radius of gyration of the effective bridge cross section $r[m]=$', value=5.985, min_value=0.0, step=0.5, format="%.3f")
