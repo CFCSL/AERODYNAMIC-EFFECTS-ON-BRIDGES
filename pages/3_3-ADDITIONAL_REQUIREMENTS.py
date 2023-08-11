@@ -71,8 +71,7 @@ st.header("3.1 Vortex excitation effects")
 
 st.write("If the bridge is found to be susceptible to aerodynamic excitation in accordance with the criteria in 2.1, then the following additional requirements shall be considered (see also 4).")
 
-st.subheader("3.1 Vortex excitation effects") 
-st.markdown(f"**3.1.1 General**")
+st.subheader("3.1.1 General")
 
 st.markdown(f"""
 Where the bridge cannot be assumed to be aerodynamically stable against vortex excitation in accordance with 2.1.1 above, consideration shall be given to:
