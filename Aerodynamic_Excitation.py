@@ -13,6 +13,20 @@ from sympy import Piecewise, nan
 import numpy as np
 import streamlit as st
 
+def custom_header():
+	t1, t2 = st.columns((1, 1))
+	
+	#logo_path = "figures/cfc_logo.png"
+	#logo_path = "figures/CFC_LOGO_20220510_blanco.png"
+	logo_path = "figures/CFC_LOGO_20220510_Negro_jpeg.jpg"
+
+	# Display the image from the URL with a specified width
+	t1.image(logo_path, width=300)
+	t2.markdown("")
+	t2.markdown("")
+	t2.markdown("")
+
+	t1.markdown(f"[https://www.cfcsl.com/](https://www.cfcsl.com)")
 
 
 
