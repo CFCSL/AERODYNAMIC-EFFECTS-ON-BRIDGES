@@ -15,7 +15,7 @@ import base64
 from io import BytesIO
 import Aerodynamic_Excitation as AF
 
-AF.costom_header()
+AF.custom_header()
 st.header(" DESIGN RULES FOR AERODYNAMIC EFFECTS ON BRIDGES")
 
 st.markdown("""The calculation notebook, founded upon the British Standard (DESIGN MANUAL FOR ROADS AND BRIDGES - BD 49/01), serves the purpose of evaluating the aerodynamic impact on bridges and determining the bridge's vulnerability to wind-induced vibrations.
