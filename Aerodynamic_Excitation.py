@@ -12,6 +12,9 @@ init_printing()
 from sympy import Piecewise, nan
 import numpy as np
 import streamlit as st
+import os
+
+current_path= os.getcwd()
 
 def custom_header():
 	t1, t2 = st.columns((1, 1))
@@ -39,8 +42,6 @@ def round_equation(eq, num_digits=3):
     rhs = eq.rhs
     rounded_rhs = round_expr(rhs, num_digits)
     return Eq(lhs, rounded_rhs)
-
-
 
 
 def Geo_Constraints():
@@ -417,7 +418,7 @@ def y_max_func(bridge_type, motion, c=c, b=b, d_4=d_4, rho=rho, m=m, delta_s=del
 
 K_D=symbols('K_D')
 
-def K_D_func(motion,y_max=y_max, f=f):
+def K_D_func(y_max=y_max, f=f):
 	y_max=UnevaluatedExpr(y_max)
 	f=UnevaluatedExpr(f)
 	val=y_max*f**2
