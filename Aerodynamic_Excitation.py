@@ -17,19 +17,57 @@ import os
 current_path= os.getcwd()
 
 def custom_header():
-	t1, t2 = st.columns((1, 1))
-	
-	#logo_path = "figures/cfc_logo.png"
-	#logo_path = "figures/CFC_LOGO_20220510_blanco.png"
-	logo_path = "figures/CFC_LOGO_20220510_Negro_jpeg.jpg"
+	t1, t2,t3 = st.columns((0.7,1, 1))
+
+	#logo_path = "figures/CFC_LOGO_20220510_Negro_jpeg.jpg"
+	logo_path="https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/figures/CFC_LOGO_20220510_Negro_jpeg.jpg?raw=true"
 
 	# Display the image from the URL with a specified width
-	t1.image(logo_path, width=300)
-	t2.markdown("")
-	t2.markdown("")
-	t2.markdown("")
+	t2.image(logo_path, width=300)
+	
+ # Use HTML to center-align the text vertically and add the link
+	centered_text_html = """
+	<div style="display: flex; align-items: center; height: 100%;">
+		<div style="flex:0.8;"></div>  <!-- Create space on the left -->
+		<div style="flex: 4; text-align: center;">
+			<a href="https://www.cfcsl.com/" target="_blank">https://www.cfcsl.com/</a>
+		</div>  <!-- Centered text -->
+		<div style="flex: 1;"></div>  <!-- Create space on the right -->
+	</div>
+	"""
+	st.markdown(centered_text_html, unsafe_allow_html=True)
+	
 
-	t1.markdown(f"[https://www.cfcsl.com/](https://www.cfcsl.com)")
+
+
+def add_logo():
+    logo_path = "figures/cfc_logo.jpeg"
+
+    st.markdown(
+        """
+<style>
+            [data-testid="stSidebarNav"] {
+                background-image: url(https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/figures/CFC_LOGO_20220510_Negro_jpeg.jpg?raw=true);
+
+                background-repeat: no-repeat;
+                padding-top: 100px;
+                background-position: 20px 20px;
+                background-size: 300px;
+            }
+            [data-testid="stSidebarNav"]::before {
+                content: "Carlos Fernandez Casado, S.L.";
+                margin-left: 40px;
+                margin-top: 200px;
+                font-size: 20px;
+                position: relative;
+                top: 50px;
+
+            }
+</style>
+        """,
+        unsafe_allow_html=True,
+    )
+
 
 
 
