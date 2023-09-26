@@ -57,7 +57,7 @@ def add_logo():
             [data-testid="stSidebarNav"]::before {
                 content: "Carlos Fernandez Casado, S.L.";
                 margin-left: 40px;
-                margin-top: 200px;
+                margin-top: 20px;
                 font-size: 20px;
                 position: relative;
                 top: 50px;
@@ -67,6 +67,7 @@ def add_logo():
         """,
         unsafe_allow_html=True,
     )
+
 
 
 
