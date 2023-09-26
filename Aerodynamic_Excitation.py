@@ -23,7 +23,7 @@ def custom_header():
 	logo_path="https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/figures/CFC_LOGO_20220510_Negro_jpeg.jpg?raw=true"
 
 	# Display the image from the URL with a specified width
-	t2.image(logo_path, width=300)
+	t2.image(logo_path, width=350)
 	
  # Use HTML to center-align the text vertically and add the link
 	centered_text_html = """
