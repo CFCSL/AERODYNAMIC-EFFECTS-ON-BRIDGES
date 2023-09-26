@@ -15,7 +15,10 @@ import base64
 from io import BytesIO
 from Aerodynamic_Excitation import *
 
+
+add_logo()
 custom_header()
+
 st.title("Bridge types")
 st.image("figures/fig1a.jpeg")
 st.image("figures/fig1b.jpeg")
