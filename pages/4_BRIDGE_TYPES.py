@@ -13,8 +13,9 @@ import matplotlib.pyplot as plt
 import math
 import base64
 from io import BytesIO
-import Aerodynamic_Excitation as AF
+from Aerodynamic_Excitation import *
 
+custom_header()
 st.title("Bridge types")
 st.image("figures/fig1a.jpeg")
 st.image("figures/fig1b.jpeg")

@@ -13,7 +13,9 @@ from sympy import symbols, Eq, Function,UnevaluatedExpr, Mul
 init_printing()
 import Aerodynamic_Excitation as AF
 
+from Aerodynamic_Excitation import *
 
+custom_header()
 
 
 
