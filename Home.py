@@ -26,12 +26,12 @@ st.header(" DESIGN RULES FOR AERODYNAMIC EFFECTS ON BRIDGES")
 st.markdown("""The calculation notebook, founded upon the British Standard (DESIGN MANUAL FOR ROADS AND BRIDGES - BD 49/01), serves the purpose of evaluating the aerodynamic impact on bridges and determining the bridge's vulnerability to wind-induced vibrations.
 The provided Python package, coupled with the subsequent Streamlit and Jupyter notebook calculation resources, has been devised to simplify the calculation procedure. :red[Nonetheless, it is important to acknowledge that this package may solely address specific sections of the document. It is strongly recommended to consistently consult the original referenced document and critically assess the calculations presented by means of this package.]""")
 
-st.markdown("""
-the package is based on :
-['DESIGN RULES FOR AERODYNAMIC EFFECTS ON BRIDGES (BD 49/01)'](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/bd4901.pdf)""")
+#st.markdown("""
+#the package is based on :
+#['DESIGN RULES FOR AERODYNAMIC EFFECTS ON BRIDGES (BD 49/01)'](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/bd4901.pdf)""")
 
 st.markdown("""---
-:bold[you can access the following to run your calculation in a more relaxed format by directly running the package locally]""")
+:bold[You can access the following to run your calculation in a more relaxed format by directly running the package locally]""")
 
 st.markdown("[Calculation notebook (Jupyter Notebook) ](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/Aerodynamic_Excitation-Copy1.ipynb)")
 st.markdown("[Aerodynamic effect Python package](https://github.com/CFCSL/AERODYNAMIC-EFFECTS-ON-BRIDGES/blob/main/Aerodynamic_Excitation.py)")
