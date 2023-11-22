@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 #from sympy import *
 #from sympy import symbols, Eq, Function,UnevaluatedExpr, Mul
-init_printing()
+#init_printing()
 import Aerodynamic_Excitation as AF
 #from Aerodynamic_Excitation import * 
 
