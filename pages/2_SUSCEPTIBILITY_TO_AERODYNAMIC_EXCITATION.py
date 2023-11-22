@@ -15,8 +15,8 @@ import Aerodynamic_Excitation as AF
 #from Aerodynamic_Excitation import * 
 
 
-add_logo()
-custom_header()
+AF.add_logo()
+AF.custom_header()
 
 
 #Parameters in the sidebar
