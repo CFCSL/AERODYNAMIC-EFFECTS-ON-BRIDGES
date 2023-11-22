@@ -8,7 +8,7 @@ Created on Wed Jul 12 12:08:46 2023
 from sympy import symbols, Eq, Function,UnevaluatedExpr
 from sympy import Piecewise, nan, N, Min, Mul
 #from sympy import *
-init_printing()
+#init_printing()
 
 import numpy as np
 import streamlit as st
