@@ -8,15 +8,12 @@ Created on Fri Jul 21 10:06:38 2023
 import streamlit as st 
 import pandas as pd
 import numpy as np
-#from sympy import *
-#from sympy import symbols, Eq, Function,UnevaluatedExpr, Mul
-init_printing()
+from sympy import latex, N
 import Aerodynamic_Excitation as AF
-#from Aerodynamic_Excitation import *
 
 
-add_logo()
-custom_header()
+AF.add_logo()
+AF.custom_header()
 #Parameters in the sidebar
 
 st.sidebar.header("Global parameters")

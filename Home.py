@@ -14,11 +14,11 @@ import math
 import base64
 from io import BytesIO
 import Aerodynamic_Excitation as AF
-from Aerodynamic_Excitation import *
 
 
-add_logo()
-custom_header()
+
+AF.add_logo()
+AF.custom_header()
 
 
 st.header(" DESIGN RULES FOR AERODYNAMIC EFFECTS ON BRIDGES")
