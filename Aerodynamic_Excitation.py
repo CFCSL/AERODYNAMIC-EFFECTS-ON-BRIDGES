@@ -5,11 +5,11 @@ Created on Wed Jul 12 12:08:46 2023
 
 @author: namnguyen
 """
-from sympy import symbols, Eq, Function,UnevaluatedExpr, Mul
-from sympy import *
-from sympy import N
+from sympy import symbols, Eq, Function,UnevaluatedExpr
+from sympy import Piecewise, nan, N, Min, Mul
+#from sympy import *
 init_printing()
-from sympy import Piecewise, nan
+
 import numpy as np
 import streamlit as st
 import os
@@ -232,17 +232,7 @@ def P_T_func(b=b,rho=rho, m=m, V_s=V_s,f_B=f_B, sigma_flm=sigma_flm, sigma_c=sig
     return round_equation(Eq(P_T,Mul( Mul(((rho * b**2) / m) , (V_s / (N(f_B,2)*b))**2, evaluate=False),((sigma_flm*b)/sigma_c),evaluate=False)),3)
 
 
-
-
-
-
-
-from sympy import Piecewise, Eq, symbols, Min
-
 C_g,V_g, V_Rg, f_B, f_T, b, d_4 , delta_s,rho,b_0 = symbols('C_g V_g V_Rg f_B f_T b d_4 delta_s rho b_0')
-
-
-
 
 #%%
 
@@ -395,7 +385,7 @@ def V_WO_func(V_r=V_r, V_d=V_d, K_1A=K_1A):
 #%%
 
 
-from sympy import symbols, Eq
+
 
 # Define the symbols
 c = symbols("c")

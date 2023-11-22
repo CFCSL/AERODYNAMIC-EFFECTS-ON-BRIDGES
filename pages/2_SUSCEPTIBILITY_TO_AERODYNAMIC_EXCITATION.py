@@ -8,11 +8,11 @@ Created on Wed Jul 12 12:30:58 2023
 import streamlit as st 
 import pandas as pd
 import numpy as np
-from sympy import *
-from sympy import symbols, Eq, Function,UnevaluatedExpr, Mul
+#from sympy import *
+#from sympy import symbols, Eq, Function,UnevaluatedExpr, Mul
 init_printing()
 import Aerodynamic_Excitation as AF
-from Aerodynamic_Excitation import *
+#from Aerodynamic_Excitation import * 
 
 
 add_logo()
